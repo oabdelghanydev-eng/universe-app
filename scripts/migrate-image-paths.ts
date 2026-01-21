@@ -1,3 +1,4 @@
+// Migration Script - Update image path format
 #!/usr/bin/env npx ts-node
 /**
  * Migration Script: Populate imagePaths from existing images URLs
@@ -145,3 +146,4 @@ migrateListings(dryRun)
         console.error('\n❌ Migration failed:', error);
         process.exit(1);
     });
+
