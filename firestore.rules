@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Students - محمي (Server Actions via Admin SDK فقط)
+    match /students/{academicId} {
+      allow read, write: if false;
+    }
+    
+    // Users - Field-level protection
+    // Clients can update profile fields but NOT security-critical fields
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create: if false; // Server Action via Admin SDK فقط
+      allow update: if request.auth.uid == userId
+                    && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isVerified', 'academicId', 'createdAt']);
+      allow delete: if false;
+    }
+    
+    // Listings - Server Actions via Admin SDK ONLY
+    // Decision: All listing mutations go through Server Actions for:
+    // - Centralized business logic (Algolia sync, validation)
+    // - Consistent error handling
+    // - Future extensibility (rate limiting, audit logging)
+    match /listings/{listingId} {
+      // قراءة: الإعلانات النشطة للجميع + المالك يرى كل شيء
+      allow read: if request.auth != null 
+                  && (
+                    (resource.data.isDeleted == false && resource.data.isFlagged == false)
+                    || resource.data.userId == request.auth.uid
+                  );
+      
+      // Create/Update/Delete: Server Actions via Admin SDK only
+      allow create: if false;
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // Reports - Server Actions via Admin SDK ONLY
+    // Decision: Reports use Server Actions for auto-flag logic
+    match /reports/{reportId} {
+      allow read: if false;
+      allow create: if false; // Server Action handles duplicate check + auto-flag
+      allow update, delete: if false;
+    }
+  }
+}
