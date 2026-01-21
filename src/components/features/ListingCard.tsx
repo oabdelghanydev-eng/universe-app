@@ -1,3 +1,4 @@
+// ListingCard - Displays individual listing preview
 'use client';
 
 import Link from 'next/link';
@@ -195,3 +196,4 @@ export function ListingCardSkeleton() {
         </div>
     );
 }
+
