@@ -1,3 +1,4 @@
+// Report submission Server Actions
 'use server';
 
 import 'server-only';
@@ -222,3 +223,4 @@ export async function hasUserReportedListing(
         return { success: true, data: { hasReported: false } };
     }
 }
+
