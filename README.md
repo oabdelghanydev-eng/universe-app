@@ -105,17 +105,45 @@ Open [http://localhost:3000](http://localhost:3000)
 ## 🔧 Environment Variables
 
 ```bash
-# Firebase
+# ============================================
+# Firebase Client Configuration (Public)
+# ============================================
 NEXT_PUBLIC_FIREBASE_API_KEY=
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
 
-# Algolia
+# ============================================
+# Firebase Admin SDK (Server-Only - SECRET)
+# ============================================
+GOOGLE_APPLICATION_CREDENTIALS=
+
+# ============================================
+# Algolia Search Configuration
+# ============================================
 NEXT_PUBLIC_ALGOLIA_APP_ID=
 NEXT_PUBLIC_ALGOLIA_SEARCH_KEY=
+ALGOLIA_ADMIN_KEY=
+
+# ============================================
+# Session Configuration
+# ============================================
+SESSION_SECRET=
+
+# ============================================
+# Supabase Storage Configuration
+# ============================================
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+
+# ============================================
+# Environment
+# ============================================
+NODE_ENV=development
 ```
 
 ---
