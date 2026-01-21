@@ -1,3 +1,4 @@
+// Algolia admin for indexing operations
 /**
  * Algolia Admin Client
  * Used by Server Actions to sync listings to Algolia
@@ -53,3 +54,4 @@ export async function updateInAlgolia(objectID: string, data: Record<string, unk
 }
 
 export default algoliaAdmin;
+
