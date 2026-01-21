@@ -1,0 +1,25 @@
+﻿[dotenv@17.2.3] injecting env (12) from .env.local -- tip: ظأآي╕  load multiple .env files with { path: ['.env.local', '.env'] }
+
+≡اôé Reading CSV: studentnameWithID.csv
+≡ا¤د Mode: DRY RUN (no changes)
+
+node.exe : 
+At C:\nvm4w\nodejs\npx.ps1:29 char:3
++   & $NODE_EXE $NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ظإî Error: Error: Line 1541: Missing academicId or fullName
+    at <anonymous> (D:\borj\sec. year\UniVerse\scripts\import-students.ts:83:19)
+    at Array.map (<anonymous>)
+    at parseCSV (D:\borj\sec. year\UniVerse\scripts\import-students.ts:75:22)
+    at main (D:\borj\sec. year\UniVerse\scripts\import-students.ts:197:25)
+    at <anonymous> (D:\borj\sec. year\UniVerse\scripts\import-students.ts:233:1)
+    at Object.<anonymous> (D:\borj\sec. 
+year\UniVerse\scripts\import-students.ts:233:6)
+    at Module._compile (node:internal/modules/cjs/loader:1565:14)
+    at Object.transformer (D:\borj\sec. 
+year\UniVerse\node_modules\tsx\dist\register-D46fvsV_.cjs:3:1104)
+    at Module.load (node:internal/modules/cjs/loader:1318:32)
+    at Function._load (node:internal/modules/cjs/loader:1128:12)
