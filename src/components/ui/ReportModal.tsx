@@ -1,3 +1,4 @@
+// ReportModal - Report listing dialog
 'use client';
 
 /**
@@ -235,3 +236,4 @@ export default function ReportModal({
         </div>
     );
 }
+
