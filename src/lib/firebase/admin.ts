@@ -1,3 +1,4 @@
+// Firebase Admin SDK for server-side operations
 /**
  * Firebase Admin SDK Configuration
  * Used for server-side operations (Server Actions)
@@ -55,3 +56,4 @@ export const adminDb: Firestore = getFirestore(adminApp);
 export const adminStorage: Storage = getStorage(adminApp);
 
 export default adminApp;
+
