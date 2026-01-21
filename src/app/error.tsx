@@ -1,3 +1,4 @@
+// Error Boundary - Global error handling
 'use client';
 
 import { useEffect } from 'react';
@@ -86,3 +87,4 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
         </div>
     );
 }
+
