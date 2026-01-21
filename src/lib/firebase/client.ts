@@ -1,3 +1,4 @@
+// Firebase Client SDK initialization
 /**
  * Firebase Client SDK Configuration
  * Used for client-side authentication and Firestore data access
@@ -32,4 +33,5 @@ export const auth: Auth = getAuth(app);
 export const db: Firestore = getFirestore(app);
 
 export default app;
+
 
