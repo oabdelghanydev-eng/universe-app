@@ -1,3 +1,4 @@
+// GlobalEffects - Global visual effects wrapper
 'use client';
 
 import CosmicBackground from '@/components/effects/CosmicBackground';
@@ -17,3 +18,4 @@ export default function GlobalEffects() {
         />
     );
 }
+
