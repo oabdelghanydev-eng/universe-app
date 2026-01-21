@@ -1,3 +1,4 @@
+// DeleteConfirmModal - Confirmation dialog for deletions
 'use client';
 
 import { useState } from 'react';
@@ -63,3 +64,4 @@ export default function DeleteConfirmModal({
         </div>
     );
 }
+
