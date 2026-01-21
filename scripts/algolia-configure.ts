@@ -1,3 +1,4 @@
+// Algolia Configuration Script
 /**
  * Configure Algolia Index Settings
  * Sets up filterable attributes and searchable attributes
@@ -74,3 +75,4 @@ main()
         console.error('❌ Error:', error);
         process.exit(1);
     });
+
