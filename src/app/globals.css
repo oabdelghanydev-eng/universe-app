@@ -1,0 +1,1068 @@
+@import "tailwindcss";
+
+/* ============================================
+   UNIVERSE DESIGN SYSTEM
+   A cosmic design language for UniVerse
+   Premium Dark Theme - 2026 Edition
+   ============================================ */
+
+/* ============================================
+   1. DESIGN TOKENS (CSS Custom Properties)
+   ============================================ */
+
+:root {
+  /* === Deep Space - Background Tiers === 
+   * Rich dark blues with subtle purple undertones
+   */
+  --space-950: #020617;
+  /* Deepest - page bg */
+  --space-900: #0f172a;
+  /* Sections */
+  --space-800: #1e293b;
+  /* Cards */
+  --space-700: #334155;
+  /* Elevated */
+  --space-600: #475569;
+  /* Borders */
+  --space-500: #64748b;
+  /* Muted elements */
+
+  /* === Nebula Accent - Primary Brand === 
+   * Vibrant indigo-violet for CTAs and focus
+   */
+  --nebula-200: #c7d2fe;
+  --nebula-300: #a5b4fc;
+  --nebula-400: #818cf8;
+  --nebula-500: #6366f1;
+  /* Primary */
+  --nebula-600: #4f46e5;
+  --nebula-700: #4338ca;
+  --nebula-glow: rgba(99, 102, 241, 0.4);
+  --nebula-glow-strong: rgba(99, 102, 241, 0.6);
+
+  /* === Stellar - Secondary Accent === 
+   * Rich purple for variety and depth
+   */
+  --stellar-200: #ddd6fe;
+  --stellar-300: #c4b5fd;
+  --stellar-400: #a78bfa;
+  --stellar-500: #8b5cf6;
+  /* Secondary */
+  --stellar-600: #7c3aed;
+  --stellar-700: #6d28d9;
+
+  /* === Cyan Accent - Fresh Highlights ===
+   * Bright cyan for special elements
+   */
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+
+  /* === Aurora - Semantic Colors ===
+   * Bright, saturated feedback colors
+   */
+  --aurora-success: #10b981;
+  --aurora-success-light: #34d399;
+  --aurora-success-muted: rgba(16, 185, 129, 0.15);
+
+  --aurora-warning: #f59e0b;
+  --aurora-warning-light: #fbbf24;
+  --aurora-warning-muted: rgba(245, 158, 11, 0.15);
+
+  --aurora-danger: #ef4444;
+  --aurora-danger-light: #f87171;
+  --aurora-danger-muted: rgba(239, 68, 68, 0.15);
+
+  --aurora-info: #0ea5e9;
+  --aurora-info-light: #38bdf8;
+  --aurora-info-muted: rgba(14, 165, 233, 0.15);
+
+  /* === Stardust - Text Hierarchy ===
+   * High contrast text for readability
+   */
+  --text-primary: #f1f5f9;
+  /* Headlines - slate-100 */
+  --text-secondary: #cbd5e1;
+  /* Body - slate-300 */
+  --text-muted: #94a3b8;
+  /* Captions - slate-400 */
+  --text-disabled: #64748b;
+  /* Disabled - slate-500 */
+  --text-inverse: #0f172a;
+  /* Text on light bg */
+
+  /* === Glass Surface System ===
+   * Layered translucent surfaces
+   */
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-bg-elevated: rgba(30, 41, 59, 0.85);
+  --glass-bg-subtle: rgba(15, 23, 42, 0.5);
+  --glass-bg-solid: #1e293b;
+  --glass-border: rgba(148, 163, 184, 0.12);
+  --glass-border-strong: rgba(148, 163, 184, 0.25);
+  --glass-border-accent: rgba(99, 102, 241, 0.3);
+  --glass-glow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(99, 102, 241, 0.1);
+  --glass-glow-strong: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 100px rgba(99, 102, 241, 0.15);
+
+  /* === Gradient Presets === */
+  --gradient-nebula: linear-gradient(135deg, var(--nebula-500) 0%, var(--stellar-500) 100%);
+  --gradient-aurora: linear-gradient(135deg, var(--cyan-400) 0%, var(--nebula-500) 50%, var(--stellar-500) 100%);
+  --gradient-sunset: linear-gradient(135deg, var(--aurora-danger-light) 0%, var(--stellar-500) 100%);
+  --gradient-cosmic: linear-gradient(180deg, var(--space-950) 0%, var(--space-900) 50%, var(--space-800) 100%);
+
+  /* === Typography === */
+  --font-display: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* === Spacing Scale (8px base) === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* === Motion === */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  /* === Border Radius === */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+
+  /* === Shadows === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  --shadow-nebula: 0 0 20px var(--nebula-glow), 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-nebula-lg: 0 0 40px var(--nebula-glow-strong), 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   2. BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--space-950);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Cosmic background gradient */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, var(--space-950) 0%, var(--space-900) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* ============================================
+   3. SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--space-600);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--space-900);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--space-500);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--space-600) var(--space-900);
+  scrollbar-width: thin;
+}
+
+/* ============================================
+   4. FOCUS STATES (Accessibility)
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--nebula-400);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Remove outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   5. TYPOGRAPHY UTILITIES
+   ============================================ */
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--nebula-400) 0%, var(--stellar-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-reverse {
+  background: linear-gradient(135deg, var(--stellar-400) 0%, var(--nebula-400) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   6. GLASS MORPHISM UTILITIES
+   ============================================ */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-elevated {
+  background: var(--glass-bg-elevated);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--glass-glow);
+}
+
+.glass-subtle {
+  background: var(--glass-bg-subtle);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ============================================
+   7. BUTTON SYSTEM
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary Button - Nebula */
+.btn-primary {
+  background: linear-gradient(135deg, var(--nebula-500) 0%, var(--nebula-600) 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--nebula-400) 0%, var(--nebula-500) 100%);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary Button - Glass */
+.btn-secondary {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border-strong);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--glass-bg-elevated);
+  border-color: var(--nebula-500);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: var(--glass-bg-subtle);
+  color: var(--text-primary);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: var(--aurora-danger-muted);
+  color: var(--aurora-danger);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--aurora-danger);
+  color: white;
+}
+
+/* Success Button (WhatsApp) */
+.btn-success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+}
+
+.btn-success:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   8. CARD SYSTEM - Liquid Glass
+   ============================================ */
+
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  /* Inner shine reflection */
+  background-image: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      transparent 50%);
+}
+
+.card-elevated {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--glass-border-strong);
+  box-shadow: var(--glass-glow);
+  /* Stronger inner shine */
+  background-image: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 40%);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glass-glow-strong);
+  border-color: var(--glass-border-accent);
+}
+
+/* ============================================
+   8.1 LIQUID GLASS SELECTION STATES
+   ============================================ */
+
+/* Glass Selected - For toggles/options with glowing border */
+.glass-selected {
+  background: rgba(99, 102, 241, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--nebula-400);
+  box-shadow:
+    0 0 25px var(--nebula-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background-image: linear-gradient(135deg,
+      rgba(99, 102, 241, 0.15) 0%,
+      transparent 60%);
+}
+
+/* Glass Unselected - Subtle state for options */
+.glass-unselected {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.glass-unselected:hover {
+  background: rgba(30, 41, 59, 0.6);
+  border-color: var(--glass-border-strong);
+}
+
+/* Glass with Gradient Glow Border */
+.glass-glow-border {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.glass-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--nebula-500), var(--stellar-500), var(--cyan-400));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Liquid Button - General purpose */
+.liquid-button {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  background-image: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 50%);
+}
+
+.liquid-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.liquid-button.active,
+.liquid-button:active {
+  background: rgba(99, 102, 241, 0.15);
+  border: 2px solid var(--nebula-400);
+  box-shadow: 0 0 25px var(--nebula-glow);
+}
+
+/* ============================================
+   9. INPUT SYSTEM - Liquid Glass
+   ============================================ */
+
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  /* Inner shadow for depth */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:hover {
+  border-color: var(--space-500);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--nebula-400);
+  background: rgba(15, 23, 42, 0.7);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.15),
+    0 0 0 3px var(--nebula-glow),
+    0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+.input-error {
+  border-color: var(--aurora-danger);
+}
+
+.input-error:focus {
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.15),
+    0 0 0 3px rgba(248, 113, 113, 0.25);
+}
+
+/* ============================================
+   10. BADGE SYSTEM
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-nebula {
+  background: linear-gradient(135deg, var(--nebula-500) 0%, var(--nebula-600) 100%);
+  color: white;
+}
+
+.badge-stellar {
+  background: linear-gradient(135deg, var(--stellar-500) 0%, var(--stellar-600) 100%);
+  color: white;
+}
+
+.badge-glass {
+  background: var(--glass-bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--glass-border);
+}
+
+.badge-success {
+  background: var(--aurora-success-muted);
+  color: var(--aurora-success);
+}
+
+.badge-danger {
+  background: var(--aurora-danger-muted);
+  color: var(--aurora-danger);
+}
+
+/* ============================================
+   11. ANIMATIONS
+   ============================================ */
+
+/* Orbit Float - Cards hover */
+@keyframes orbit-float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-8px) scale(1.01);
+  }
+}
+
+.animate-orbit-float {
+  animation: orbit-float 3s var(--ease-in-out) infinite;
+}
+
+/* Pulse Glow - Loading, active states */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px var(--nebula-glow);
+    opacity: 1;
+  }
+
+  50% {
+    box-shadow: 0 0 40px var(--nebula-glow-strong);
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s var(--ease-in-out) infinite;
+}
+
+/* Fade Slide Up - Page transitions */
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-slide-up {
+  animation: fade-slide-up var(--duration-slow) var(--ease-out-expo) forwards;
+}
+
+/* Shimmer - Skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--space-800) 0%,
+      var(--space-700) 20%,
+      var(--space-800) 40%,
+      var(--space-800) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: var(--radius-md);
+}
+
+/* Spin - Loaders */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Gentle Float - Decorative elements */
+@keyframes gentle-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 4s var(--ease-in-out) infinite;
+}
+
+/* ============================================
+   12. UTILITY CLASSES
+   ============================================ */
+
+/* Container with max-width */
+.container-narrow {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-wide {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Glow on hover */
+.hover-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-out-expo);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px var(--nebula-glow);
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   13. MODAL BACKDROP
+   ============================================ */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 7, 18, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+/* ============================================
+   14. SELECTION
+   ============================================ */
+
+::selection {
+  background: var(--nebula-500);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--nebula-500);
+  color: white;
+}
+
+/* ============================================
+   15. COSMIC EFFECTS - Stars, Aurora, Meteors
+   ============================================ */
+
+/* CSS Stars - Triple layer for depth */
+.stars-layer-1,
+.stars-layer-2,
+.stars-layer-3 {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat;
+}
+
+.stars-layer-1 {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 90px 40px, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 160px 120px, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 200px 200px;
+  animation: stars-drift 120s linear infinite;
+}
+
+.stars-layer-2 {
+  background-image:
+    radial-gradient(1px 1px at 25px 45px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 75px 105px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 125px 25px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 175px 145px, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 250px 250px;
+  animation: stars-drift 180s linear infinite reverse;
+}
+
+.stars-layer-3 {
+  background-image:
+    radial-gradient(2px 2px at 50px 50px, rgba(165, 180, 252, 0.7), transparent),
+    radial-gradient(2px 2px at 150px 150px, rgba(167, 139, 250, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 100px 100px, rgba(56, 189, 248, 0.5), transparent);
+  background-size: 300px 300px;
+  animation: stars-twinkle 4s ease-in-out infinite;
+}
+
+@keyframes stars-drift {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+@keyframes stars-twinkle {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Aurora Wave Effect */
+.aurora-wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(99, 102, 241, 0.1) 30%,
+      rgba(139, 92, 246, 0.15) 50%,
+      rgba(99, 102, 241, 0.1) 70%,
+      transparent 100%);
+  filter: blur(30px);
+}
+
+.aurora-wave-1 {
+  top: -50%;
+  left: -50%;
+  animation: aurora-move 15s ease-in-out infinite;
+}
+
+.aurora-wave-2 {
+  top: -30%;
+  left: -30%;
+  animation: aurora-move 20s ease-in-out infinite reverse;
+  opacity: 0.7;
+}
+
+.aurora-wave-3 {
+  top: -40%;
+  left: -20%;
+  animation: aurora-move 25s ease-in-out infinite;
+  opacity: 0.5;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(56, 189, 248, 0.08) 30%,
+      rgba(52, 211, 153, 0.1) 50%,
+      rgba(56, 189, 248, 0.08) 70%,
+      transparent 100%);
+}
+
+@keyframes aurora-move {
+
+  0%,
+  100% {
+    transform: translateX(-10%) translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateX(10%) translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Meteor Shower */
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(99, 102, 241, 0.4) 50%,
+      transparent 100%);
+  transform: rotate(45deg);
+  animation: meteor-fall 3s ease-in infinite;
+  opacity: 0;
+}
+
+@keyframes meteor-fall {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(45deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(300px) translateY(300px) rotate(45deg);
+  }
+}
+
+/* Floating Animations */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+
+  50% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+
+  75% {
+    transform: translateY(-25px) translateX(5px);
+  }
+}
+
+@keyframes float-medium {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-30px);
+  }
+}
+
+@keyframes float-slower {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  33% {
+    transform: translateY(-15px) translateX(-10px);
+  }
+
+  66% {
+    transform: translateY(-5px) translateX(15px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float-medium 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 16s ease-in-out infinite;
+}
+
+/* Glowing Text Effect */
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(99, 102, 241, 0.5),
+    0 0 20px rgba(99, 102, 241, 0.3),
+    0 0 30px rgba(99, 102, 241, 0.2);
+}
+
+/* Neon Border Effect */
+.neon-border {
+  box-shadow:
+    0 0 5px var(--nebula-500),
+    0 0 10px var(--nebula-500),
+    0 0 20px rgba(99, 102, 241, 0.3),
+    inset 0 0 5px rgba(99, 102, 241, 0.1);
+}
+
+/* Particle Glow */
+.particle-glow {
+  box-shadow:
+    0 0 20px rgba(99, 102, 241, 0.4),
+    0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+/* Shimmer text animation */
+.text-shimmer {
+  background: linear-gradient(90deg,
+      var(--text-primary) 0%,
+      var(--nebula-400) 25%,
+      var(--stellar-400) 50%,
+      var(--nebula-400) 75%,
+      var(--text-primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer-text 3s linear infinite;
+}
+
+@keyframes shimmer-text {
+  0% {
+    background-position: 200% center;
+  }
+
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Pulse ring animation */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--nebula-500);
+  opacity: 0;
+  animation: pulse-ring-expand 2s ease-out infinite;
+}
+
+@keyframes pulse-ring-expand {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
