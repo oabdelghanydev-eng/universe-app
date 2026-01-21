@@ -1,3 +1,4 @@
+// ImageService - Image upload and processing
 /**
  * Image Service - Higher-level abstraction for listing images
  * 
@@ -146,3 +147,4 @@ export function getImageService(): ImageService {
 }
 
 export default getImageService;
+
