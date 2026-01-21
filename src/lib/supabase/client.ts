@@ -1,3 +1,4 @@
+// Supabase Client for storage operations
 /**
  * Supabase Client Configuration
  * Client-side Supabase client for read-only operations
@@ -15,3 +16,4 @@ export const supabase = createClient(
 );
 
 export const STORAGE_BUCKET = 'listings';
+
