@@ -1,4 +1,3 @@
-// Cleanup Script - Remove soft-deleted listings
 /**
  * cleanup-deleted-listings.ts
  * 

@@ -1,4 +1,3 @@
-// Algolia Configuration Script
 /**
  * Configure Algolia Index Settings
  * Sets up filterable attributes and searchable attributes

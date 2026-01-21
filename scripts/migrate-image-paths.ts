@@ -1,6 +1,7 @@
-// Migration Script - Update image path format
 #!/usr/bin/env npx ts-node
 /**
+ * Migration Script - Update image path format
+ *
  * Migration Script: Populate imagePaths from existing images URLs
  * 
  * This script is needed for existing listings that were created before

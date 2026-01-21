@@ -1,4 +1,3 @@
-// Algolia Full Reindex Script
 /**
  * Algolia Full Re-Index Script
  * Re-indexes ALL active listings from Firestore to Algolia

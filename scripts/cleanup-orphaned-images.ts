@@ -1,4 +1,3 @@
-// Cleanup Script - Remove orphaned images
 /**
  * Storage Cleanup Script
  * 

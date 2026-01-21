@@ -1,4 +1,3 @@
-// Algolia Retry Sync Script
 /**
  * Algolia Retry Sync Script
  * 
