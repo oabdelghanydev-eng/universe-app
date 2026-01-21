@@ -1,3 +1,4 @@
+// Authentication Server Actions
 'use server';
 
 /**
@@ -240,3 +241,4 @@ export async function logoutUser(): Promise<ActionResult> {
         };
     }
 }
+
