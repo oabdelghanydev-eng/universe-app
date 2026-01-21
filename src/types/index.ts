@@ -1,3 +1,4 @@
+// Type definitions for UniVerse application
 /**
  * TypeScript Type Definitions
  */
@@ -115,3 +116,4 @@ export interface AlgoliaListing {
     createdAt: number;
     updatedAt: number;
 }
+
