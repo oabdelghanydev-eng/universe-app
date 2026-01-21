@@ -1,3 +1,4 @@
+// Algolia Full Reindex Script
 /**
  * Algolia Full Re-Index Script
  * Re-indexes ALL active listings from Firestore to Algolia
@@ -129,3 +130,4 @@ main()
         console.error('\n❌ Script failed:', error);
         process.exit(1);
     });
+
