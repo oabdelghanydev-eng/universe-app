@@ -1,3 +1,4 @@
+// 404 Page - Not found handler
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -75,3 +76,4 @@ export default function NotFoundPage() {
         </div>
     );
 }
+
