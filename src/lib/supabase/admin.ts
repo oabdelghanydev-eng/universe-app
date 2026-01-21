@@ -1,3 +1,4 @@
+// Supabase Admin for server-side storage
 /**
  * Supabase Storage - Server-side Admin Client
  * Uses service_role key to bypass RLS (for Server Actions)
@@ -148,3 +149,4 @@ export async function refreshSignedUrls(paths: string[]): Promise<Map<string, st
 
     return urlMap;
 }
+
