@@ -1,3 +1,4 @@
+// Cleanup Script - Remove orphaned images
 /**
  * Storage Cleanup Script
  * 
@@ -154,3 +155,4 @@ cleanupOrphanedImages()
         console.error('\n❌ Script failed:', error);
         process.exit(1);
     });
+
