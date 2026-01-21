@@ -1,3 +1,4 @@
+// Student Import Script - Bulk user import
 /**
  * import-students.ts
  * 
@@ -243,3 +244,4 @@ CSV Format:
 }
 
 main();
+
