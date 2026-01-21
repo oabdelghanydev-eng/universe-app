@@ -1,3 +1,4 @@
+// Authentication utilities for Firebase Auth
 /**
  * Server-side Session Management
  * Handles session cookie verification and user session retrieval
@@ -66,3 +67,4 @@ export const SESSION_CONFIG = {
         path: '/',
     },
 };
+
