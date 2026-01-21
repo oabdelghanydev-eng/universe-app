@@ -1,3 +1,4 @@
+// useImageUrls hook - Image URL resolution and caching
 /**
  * useImageUrls Hook
  * 
@@ -144,3 +145,4 @@ export function useFirstImageUrl(imagePaths: string[]): {
 }
 
 export default useImageUrls;
+
