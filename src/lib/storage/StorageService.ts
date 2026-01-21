@@ -1,3 +1,4 @@
+// StorageService - Abstract storage operations
 /**
  * Storage Service - OOP Architecture for Supabase Storage
  * 
@@ -278,3 +279,4 @@ export function getStorageService(): StorageService {
 // ============================================
 
 export default getStorageService;
+
