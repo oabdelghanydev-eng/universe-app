@@ -1,3 +1,4 @@
+// Home Page - Landing and authenticated dashboard
 import Link from 'next/link';
 import { getServerSession } from '@/lib/auth';
 import { adminDb } from '@/lib/firebase/admin';
@@ -298,3 +299,4 @@ function getGreeting(): string {
     if (hour < 17) return 'مساء الخير';
     return 'مساء النور';
 }
+
