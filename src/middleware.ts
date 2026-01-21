@@ -1,3 +1,4 @@
+// Authentication Middleware - Route protection
 /**
  * Next.js Middleware
  * Handles session cookie renewal and protected route redirects
@@ -74,3 +75,4 @@ export const config = {
         '/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)',
     ],
 };
+
