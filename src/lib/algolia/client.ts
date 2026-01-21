@@ -1,3 +1,4 @@
+// Algolia search client initialization
 /**
  * Algolia Search Client
  * Used by client components for search functionality
@@ -18,3 +19,4 @@ export const searchIndexName = 'listings';
 export { algoliaClient };
 
 export default algoliaClient;
+
