@@ -1,3 +1,4 @@
+// CosmicBackground - Animated space background effect
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -317,3 +318,4 @@ export default function CosmicBackground({
         </>
     );
 }
+
