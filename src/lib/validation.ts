@@ -1,3 +1,4 @@
+// Validation schemas using Zod
 /**
  * Zod Validation Schemas
  * Server-side validation for all user inputs
@@ -82,3 +83,4 @@ export function validateListing(data: unknown) {
 export function validateReport(data: unknown) {
     return reportSchema.safeParse(data);
 }
+
