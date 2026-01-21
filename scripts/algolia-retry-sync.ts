@@ -1,3 +1,4 @@
+// Algolia Retry Sync Script
 /**
  * Algolia Retry Sync Script
  * 
@@ -136,3 +137,4 @@ retrySyncFailedListings()
         console.error('\n❌ Script failed:', error);
         process.exit(1);
     });
+
