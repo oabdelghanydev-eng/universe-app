@@ -60,3 +60,5 @@ studentnameWithID.csv
 !firebase.json
 !firestore.indexes.json
 !tsconfig.json
+
+.trash

@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     title: 'UniVerse - منصة طلاب الجامعة',
     description: 'منصة مغلقة لطلاب الجامعة لعرض وبيع المنتجات والخدمات',
     keywords: ['جامعة', 'طلاب', 'بيع', 'شراء', 'خدمات', 'منتجات'],
+    icons: {
+        icon: '/favicon.svg',
+    },
 };
 
 export const viewport = {

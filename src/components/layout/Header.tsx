@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
 import { logoutUser, checkRegistrationStatus } from '@/actions/auth';
+import Logo from '@/components/ui/Logo';
 
 interface UserState {
     isLoggedIn: boolean;
@@ -83,12 +84,9 @@ export default function Header() {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="flex items-center gap-2 text-xl font-bold group"
+                        className="block scale-90 sm:scale-100 transition-opacity hover:opacity-90"
                     >
-                        <span className="text-2xl transition-transform duration-300 group-hover:scale-110">
-                            🎓
-                        </span>
-                        <span className="text-gradient">UniVerse</span>
+                        <Logo size="md" />
                     </Link>
 
                     {/* Navigation */}
@@ -100,7 +98,7 @@ export default function Header() {
                                 {/* New Listing Button */}
                                 <Link
                                     href="/listing/new"
-                                    className="btn btn-primary text-sm px-4 py-2"
+                                    className="btn btn-primary btn-sm"
                                 >
                                     <span className="hidden sm:inline">+ انشر إعلان</span>
                                     <span className="sm:hidden">+</span>
@@ -174,7 +172,7 @@ export default function Header() {
                         ) : user?.isLoggedIn && !user?.isRegistered ? (
                             <Link
                                 href="/register"
-                                className="btn btn-primary text-sm px-4 py-2"
+                                className="btn btn-primary btn-sm"
                             >
                                 أكمل التسجيل
                             </Link>
@@ -188,7 +186,7 @@ export default function Header() {
                                 </Link>
                                 <Link
                                     href="/register"
-                                    className="btn btn-primary text-sm px-4 py-2"
+                                    className="btn btn-primary btn-sm"
                                 >
                                     إنشاء حساب
                                 </Link>

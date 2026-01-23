@@ -367,7 +367,7 @@ export default function ListingForm({
             <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full btn btn-primary py-3.5 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full btn btn-primary btn-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 {isLoading ? (
                     <span className="flex items-center justify-center gap-2">

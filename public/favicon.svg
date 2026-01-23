@@ -1,0 +1,229 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Cyan Stream Gradient -->
+    <linearGradient id="cyanStream" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    
+    <!-- Purple Stream Gradient -->
+    <linearGradient id="purpleStream" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="50%" stop-color="#d946ef"/>
+      <stop offset="100%" stop-color="#c026d3"/>
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="cyanGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feFlood flood-color="#22d3ee" flood-opacity="0.9"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="purpleGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#d946ef" flood-opacity="0.85"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="iconGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ====================================================================================
+       COMPLEX FLUID PATH (Right-to-Left Serpentine U-Shape):
+       Restoring the 8-segment flow with distinct separated glowing lines.
+       ==================================================================================== -->
+
+  <!-- ============== CYAN STREAM (Outer) ============== -->
+  
+  <!-- Cyan Glow Background -->
+  <path d="M 480 30
+           C 430 30, 400 60, 370 140       
+           C 355 180, 355 240, 385 320     
+           C 405 380, 360 460, 256 470     
+           C 150 480, 80 420, 90 340       
+           C 100 260, 150 220, 120 140     
+           C 100 80, 60 50, 30 40"         
+        fill="none" stroke="url(#cyanStream)" stroke-width="56" stroke-linecap="round"
+        filter="url(#cyanGlow)" opacity="0.4"/>
+
+  <!-- Cyan Line 1 (Brightest outer edge) -->
+  <path d="M 488 25
+           C 435 25, 408 55, 378 135
+           C 362 175, 362 235, 392 315
+           C 412 375, 368 465, 256 478
+           C 145 490, 70 425, 82 342
+           C 92 262, 142 222, 112 142
+           C 92 82, 52 45, 20 35" 
+        fill="none" stroke="#67e8f9" stroke-width="9" stroke-linecap="round" filter="url(#cyanGlow)"/>
+
+  <!-- Cyan Line 2 (Main) -->
+  <path d="M 482 32
+           C 432 32, 402 62, 372 142
+           C 358 182, 358 242, 388 322
+           C 408 382, 362 462, 256 472
+           C 148 482, 75 422, 86 340
+           C 96 260, 146 220, 116 140
+           C 96 80, 56 48, 25 38" 
+        fill="none" stroke="url(#cyanStream)" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Cyan Line 3 (Inner accent) -->
+  <path d="M 474 40
+           C 426 40, 396 70, 366 148
+           C 352 188, 352 248, 382 328
+           C 402 388, 355 458, 256 465
+           C 155 475, 82 415, 92 338
+           C 102 258, 152 218, 122 138
+           C 102 78, 62 52, 32 42" 
+        fill="none" stroke="#22d3ee" stroke-width="6" stroke-linecap="round"/>
+
+
+  <!-- ============== PURPLE STREAM (Inner) ============== -->
+  
+  <!-- Purple Glow Background -->
+  <path d="M 460 55
+           C 415 55, 385 85, 355 160
+           C 342 200, 342 255, 370 330
+           C 388 385, 345 445, 256 450
+           C 170 455, 105 400, 112 325
+           C 120 250, 165 210, 138 135
+           C 118 80, 78 58, 45 50" 
+        fill="none" stroke="url(#purpleStream)" stroke-width="44" stroke-linecap="round"
+        filter="url(#purpleGlow)" opacity="0.35"/>
+
+  <!-- Purple Line 1 (Core) -->
+  <path d="M 456 58
+           C 412 58, 382 88, 352 162
+           C 338 202, 338 258, 368 332
+           C 385 388, 342 448, 256 452
+           C 170 458, 105 402, 114 322
+           C 122 248, 168 208, 140 132
+           C 120 78, 80 55, 42 48" 
+        fill="none" stroke="url(#purpleStream)" stroke-width="17" stroke-linecap="round" filter="url(#purpleGlow)"/>
+
+  <!-- Purple Line 2 -->
+  <path d="M 445 68
+           C 405 68, 375 95, 345 168
+           C 330 208, 330 262, 360 338
+           C 378 392, 335 440, 256 442
+           C 178 448, 115 395, 122 318
+           C 130 245, 175 205, 148 130
+           C 128 75, 88 62, 55 58" 
+        fill="none" stroke="#d946ef" stroke-width="11" stroke-linecap="round"/>
+
+  <!-- Purple Line 3 (Light) -->
+  <path d="M 435 80
+           C 395 80, 368 105, 338 175
+           C 322 215, 322 268, 352 345
+           C 370 398, 328 432, 256 432
+           C 185 438, 125 388, 132 312
+           C 140 240, 185 200, 158 128
+           C 138 72, 98 70, 65 65" 
+        fill="none" stroke="#f0abfc" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Innermost Cyan highlight -->
+  <path d="M 420 95
+           C 382 95, 358 118, 328 185
+           C 312 225, 312 275, 342 352
+           C 360 405, 318 425, 256 422
+           C 195 425, 138 380, 142 305
+           C 150 235, 192 195, 168 125
+           C 148 70, 108 80, 78 75" 
+        fill="none" stroke="#22d3ee" stroke-width="3" stroke-linecap="round" filter="url(#cyanGlow)"/>
+
+
+  <!-- ==================================================================
+       FLOATING ICONS
+       ================================================================== -->
+  
+  <!-- PHONE 1 (Top Right) -->
+  <g transform="translate(420, 80)" filter="url(#iconGlow)">
+    <rect x="0" y="0" width="28" height="46" rx="4" stroke="#67e8f9" stroke-width="2.5" fill="none"/>
+    <line x1="10" y1="38" x2="18" y2="38" stroke="#67e8f9" stroke-width="2"/>
+  </g>
+
+  <!-- GEAR 1 (Right curve area) -->
+  <g transform="translate(365, 210)" filter="url(#iconGlow)">
+    <circle r="15" stroke="#a855f7" stroke-width="2.5" fill="none"/>
+    <circle r="5" stroke="#a855f7" stroke-width="2" fill="none"/>
+    <path d="M 0 -20 V -15 M 0 15 V 20 M -20 0 H -15 M 15 0 H 20" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- CHAT BUBBLE (Bottom U-turn) -->
+  <g transform="translate(260, 435)" filter="url(#iconGlow)">
+    <path d="M 0 18 C -20 18, -25 0, -20 -12 C -14 -25, 14 -25, 20 -12 C 25 0, 20 18, 0 18 L -6 30 L -10 18" 
+          stroke="#ec4899" stroke-width="2.5" fill="none"/>
+    <circle cx="-8" cy="0" r="2.5" fill="#ec4899"/>
+    <circle cx="0" cy="0" r="2.5" fill="#ec4899"/>
+    <circle cx="8" cy="0" r="2.5" fill="#ec4899"/>
+  </g>
+  
+  <!-- PHONE 2 (Bottom Left) -->
+  <g transform="translate(125, 415)" filter="url(#iconGlow)">
+    <rect x="0" y="0" width="28" height="45" rx="4" stroke="#22d3ee" stroke-width="2.5" fill="none"/>
+    <line x1="10" y1="38" x2="18" y2="38" stroke="#22d3ee" stroke-width="2"/>
+  </g>
+
+  <!-- GEAR 2 (Left Ascent S-curve) -->
+  <g transform="translate(140, 230)" filter="url(#iconGlow)">
+    <circle r="16" stroke="#c084fc" stroke-width="2.5" fill="none"/>
+    <circle r="6" stroke="#c084fc" stroke-width="2" fill="none"/>
+    <path d="M 0 -22 V -16 M 0 16 V 22 M -22 0 H -16 M 16 0 H 22 M -15 -15 L -11 -11 M 11 11 L 15 15" 
+          stroke="#c084fc" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- BOOK (Top Left end) -->
+  <g transform="translate(60, 90)" filter="url(#iconGlow)">
+    <path d="M 0 0 C 0 -7, 16 -12, 26 0 C 36 -12, 52 -7, 52 0 V 38 C 52 30, 36 26, 26 38 C 16 26, 0 30, 0 38 Z" 
+          stroke="#d946ef" stroke-width="2.5" fill="none"/>
+    <path d="M 26 0 V 38" stroke="#d946ef" stroke-width="2"/>
+  </g>
+
+  <!-- HEADPHONES (Right mid curve) -->
+  <g transform="translate(385, 330)" filter="url(#iconGlow)">
+    <path d="M -14 7 C -14 -12, 14 -12, 14 7" stroke="#67e8f9" stroke-width="2.5" fill="none"/>
+    <rect x="-18" y="3" width="9" height="15" rx="2" stroke="#67e8f9" stroke-width="2" fill="none"/>
+    <rect x="9" y="3" width="9" height="15" rx="2" stroke="#67e8f9" stroke-width="2" fill="none"/>
+  </g>
+
+
+  <!-- ==================================================================
+       STARS / SPARKLES
+       ================================================================== -->
+  <g fill="#e2e8f0" opacity="0.7">
+    <circle cx="470" cy="50" r="1.5"/>
+    <circle cx="410" cy="110" r="1"/>
+    <circle cx="360" cy="180" r="1.2"/>
+    <circle cx="370" cy="300" r="1"/>
+    <circle cx="390" cy="375" r="1.5"/>
+    <circle cx="320" cy="450" r="1"/>
+    <circle cx="200" cy="465" r="1.5"/>
+    <circle cx="130" cy="435" r="1"/>
+    <circle cx="100" cy="360" r="1.2"/>
+    <circle cx="150" cy="250" r="1"/>
+    <circle cx="130" cy="160" r="1.5"/>
+    <circle cx="90" cy="100" r="1"/>
+    <circle cx="40" cy="55" r="1.2"/>
+  </g>
+
+  <!-- Large Sparkle Star -->
+  <g transform="translate(485, 480)">
+    <path d="M 0 -20 L 5 -5 L 20 0 L 5 5 L 0 20 L -5 5 L -20 0 L -5 -5 Z" fill="#f1f5f9" opacity="0.9"/>
+  </g>
+
+</svg>

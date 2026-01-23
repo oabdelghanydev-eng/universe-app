@@ -288,7 +288,7 @@ export default function ListingsFeed({
                     <span className="text-[var(--aurora-danger)]">{error}</span>
                     <button
                         onClick={handleRetry}
-                        className="btn btn-ghost text-[var(--aurora-danger)] hover:bg-[var(--aurora-danger)]/10"
+                        className="btn btn-ghost btn-sm text-[var(--aurora-danger)] hover:bg-[var(--aurora-danger)]/10"
                     >
                         إعادة المحاولة
                     </button>
@@ -323,7 +323,7 @@ export default function ListingsFeed({
                     {!debouncedQuery && (
                         <Link
                             href="/listing/new"
-                            className="btn btn-primary px-6 py-2"
+                            className="btn btn-primary btn-md"
                         >
                             انشر إعلان جديد
                         </Link>

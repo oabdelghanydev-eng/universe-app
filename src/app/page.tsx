@@ -4,6 +4,7 @@ import { getServerSession } from '@/lib/auth';
 import { adminDb } from '@/lib/firebase/admin';
 import ListingsFeed from '@/components/features/ListingsFeed';
 import { MeteorShower } from '@/components/effects/CosmicBackground';
+import Logo from '@/components/ui/Logo';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,13 +54,13 @@ function LandingPage() {
                 <div className="relative z-10 container mx-auto px-4 text-center">
                     <div className="animate-fade-slide-up">
                         {/* Logo Mark */}
-                        <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl glass-elevated mb-8 shadow-nebula animate-pulse-glow pulse-ring">
-                            <span className="text-5xl">🎓</span>
+                        <div className="flex justify-center mb-8">
+                            <Logo size="xl" showText={false} className="scale-150" />
                         </div>
 
                         {/* Title */}
                         <h1 className="text-5xl md:text-7xl font-extrabold mb-6">
-                            <span className="text-shimmer">UniVerse</span>
+                            <span className="text-white">Uni</span><span className="text-shimmer">Verse</span>
                         </h1>
 
                         {/* Subtitle */}
@@ -76,13 +77,13 @@ function LandingPage() {
                         <div className="flex gap-4 justify-center flex-wrap">
                             <Link
                                 href="/register"
-                                className="btn btn-primary px-8 py-4 text-lg shadow-nebula-lg hover:scale-105 transition-transform"
+                                className="btn btn-primary btn-lg shadow-nebula-lg hover:scale-105 transition-transform"
                             >
                                 سجل بإيميل الجامعة
                             </Link>
                             <Link
                                 href="/login"
-                                className="btn btn-secondary px-8 py-4 text-lg"
+                                className="btn btn-secondary btn-lg"
                             >
                                 دخول
                             </Link>

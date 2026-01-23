@@ -8,22 +8,28 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <main className="container mx-auto px-4 py-12 max-w-4xl">
+        <main className="container mx-auto px-4 py-12 max-w-4xl animate-fade-slide-up">
             {/* Header */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                    🎓 عن UniVerse
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl glass-elevated mb-6 animate-gentle-float">
+                    <span className="text-4xl">🎓</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">
+                    عن <span className="text-gradient">UniVerse</span>
                 </h1>
-                <p className="text-xl text-gray-600">
+                <p className="text-xl text-[var(--text-secondary)]">
                     منصة مغلقة وآمنة لطلاب الجامعة
                 </p>
             </div>
 
             {/* Mission */}
             <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">🎯 مهمتنا</h2>
-                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6">
-                    <p className="text-gray-700 leading-relaxed">
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+                    <span>🎯</span> مهمتنا
+                </h2>
+                <div className="card-elevated p-8 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--nebula-500)]/10 blur-3xl rounded-full pointer-events-none" />
+                    <p className="text-[var(--text-secondary)] leading-relaxed text-lg relative z-10">
                         UniVerse هي منصة مخصصة لطلاب الجامعة لعرض وشراء المنتجات والخدمات بشكل آمن.
                         نوفر بيئة موثوقة حيث كل مستخدم تم التحقق من هويته كطالب جامعي،
                         مما يضمن تعاملات آمنة بين الطلاب.
@@ -33,7 +39,9 @@ export default function AboutPage() {
 
             {/* Features */}
             <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">✨ مميزاتنا</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2">
+                    <span>✨</span> مميزاتنا
+                </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                     <FeatureCard
                         icon="🔐"
@@ -60,7 +68,9 @@ export default function AboutPage() {
 
             {/* How it works */}
             <section className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">🚀 كيف تبدأ؟</h2>
+                <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6 flex items-center gap-2">
+                    <span>🚀</span> كيف تبدأ؟
+                </h2>
                 <div className="space-y-4">
                     <Step number={1} title="سجل حسابك" description="سجل دخولك بحساب Google ثم أدخل رقمك الأكاديمي للتحقق" />
                     <Step number={2} title="تصفح الإعلانات" description="ابحث عن المنتجات والخدمات التي تحتاجها" />
@@ -70,30 +80,35 @@ export default function AboutPage() {
             </section>
 
             {/* CTA */}
-            <section className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-xl p-8 text-center text-white">
-                <h2 className="text-2xl font-bold mb-4">جاهز للبدء؟</h2>
-                <p className="mb-6 opacity-90">انضم لمجتمع UniVerse الآن وابدأ في استكشاف الفرص</p>
-                <div className="flex gap-4 justify-center flex-wrap">
-                    <Link
-                        href="/register"
-                        className="px-6 py-3 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors"
-                    >
-                        سجل الآن
-                    </Link>
-                    <Link
-                        href="/"
-                        className="px-6 py-3 bg-transparent border-2 border-white rounded-lg font-medium hover:bg-white/10 transition-colors"
-                    >
-                        تصفح الإعلانات
-                    </Link>
+            <section className="relative rounded-2xl p-8 text-center overflow-hidden">
+                {/* Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--nebula-600)] to-[var(--stellar-600)] opacity-90" />
+
+                <div className="relative z-10">
+                    <h2 className="text-3xl font-bold text-white mb-4">جاهز للبدء؟</h2>
+                    <p className="mb-8 text-white/90 text-lg">انضم لمجتمع UniVerse الآن وابدأ في استكشاف الفرص</p>
+                    <div className="flex gap-4 justify-center flex-wrap">
+                        <Link
+                            href="/register"
+                            className="px-8 py-3.5 bg-white text-[var(--nebula-600)] rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all duration-200"
+                        >
+                            سجل الآن
+                        </Link>
+                        <Link
+                            href="/"
+                            className="px-8 py-3.5 bg-transparent border-2 border-white text-white rounded-xl font-bold hover:bg-white/10 transition-all duration-200"
+                        >
+                            تصفح الإعلانات
+                        </Link>
+                    </div>
                 </div>
             </section>
 
             {/* Footer links */}
-            <div className="mt-12 text-center text-sm text-gray-500">
-                <Link href="/privacy" className="hover:text-indigo-600">سياسة الخصوصية</Link>
-                <span className="mx-3">•</span>
-                <Link href="/terms" className="hover:text-indigo-600">الشروط والأحكام</Link>
+            <div className="mt-12 text-center text-sm text-[var(--text-muted)]">
+                <Link href="/privacy" className="hover:text-[var(--nebula-400)] transition-colors">سياسة الخصوصية</Link>
+                <span className="mx-3 text-[var(--space-600)]">•</span>
+                <Link href="/terms" className="hover:text-[var(--nebula-400)] transition-colors">الشروط والأحكام</Link>
             </div>
         </main>
     );
@@ -105,23 +120,23 @@ export default function AboutPage() {
 
 function FeatureCard({ icon, title, description }: { icon: string; title: string; description: string }) {
     return (
-        <div className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="text-3xl mb-3">{icon}</div>
-            <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-            <p className="text-gray-600 text-sm">{description}</p>
+        <div className="card p-6 hover:border-[var(--nebula-500)]/50 transition-colors group">
+            <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">{icon}</div>
+            <h3 className="font-bold text-[var(--text-primary)] mb-2 text-lg">{title}</h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed">{description}</p>
         </div>
     );
 }
 
 function Step({ number, title, description }: { number: number; title: string; description: string }) {
     return (
-        <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold shrink-0">
+        <div className="card p-4 flex gap-4 items-center group hover:bg-[var(--glass-bg-elevated)] transition-colors">
+            <div className="w-12 h-12 rounded-xl bg-[var(--nebula-500)]/20 text-[var(--nebula-400)] flex items-center justify-center font-bold text-xl shrink-0 group-hover:bg-[var(--nebula-500)] group-hover:text-white transition-all duration-300">
                 {number}
             </div>
             <div>
-                <h3 className="font-bold text-gray-900">{title}</h3>
-                <p className="text-gray-600 text-sm">{description}</p>
+                <h3 className="font-bold text-[var(--text-primary)] text-lg mb-1">{title}</h3>
+                <p className="text-[var(--text-secondary)]">{description}</p>
             </div>
         </div>
     );

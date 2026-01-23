@@ -1,5 +1,6 @@
 // Footer Component - Site footer
 import Link from 'next/link';
+import Logo from '@/components/ui/Logo';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -11,9 +12,8 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand Column */}
                     <div className="md:col-span-2">
-                        <Link href="/" className="inline-flex items-center gap-2 text-xl font-bold mb-4">
-                            <span className="text-2xl">🎓</span>
-                            <span className="text-gradient">UniVerse</span>
+                        <Link href="/" className="inline-block mb-4">
+                            <Logo size="sm" />
                         </Link>
                         <p className="text-[var(--text-secondary)] text-sm max-w-xs leading-relaxed">
                             منصة مغلقة وآمنة لطلاب الجامعة لعرض وبيع المنتجات والخدمات.
