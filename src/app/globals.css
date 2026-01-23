@@ -1,134 +1,207 @@
-/* UniVerse Design System v1.0 */
+/* UniVerse Design System v2.0 - Tailwind CSS v4 */
 @import "tailwindcss";
 
 /* ============================================
    UNIVERSE DESIGN SYSTEM
    A cosmic design language for UniVerse
    Premium Dark Theme - 2026 Edition
+   
+   Tailwind CSS v4 Best Practices:
+   - CSS-first configuration with @theme
+   - OKLCH color space for vibrant colors
+   - Semantic naming convention
    ============================================ */
 
 /* ============================================
-   1. DESIGN TOKENS (CSS Custom Properties)
+   1. TAILWIND V4 THEME CONFIGURATION
+   ============================================ */
+
+@theme {
+  /* === Typography === */
+  --font-sans: var(--font-ibm-plex), 'IBM Plex Sans Arabic', 'Inter', system-ui, sans-serif;
+  --font-display: var(--font-ibm-plex), 'IBM Plex Sans Arabic', 'Inter', system-ui, sans-serif;
+
+  /* === Surface Colors (Galactic Depth) - OKLCH === */
+  --color-surface-950: oklch(0.10 0.03 264);
+  /* Deepest Void */
+  --color-surface-900: oklch(0.15 0.04 264);
+  /* Background */
+  --color-surface-800: oklch(0.22 0.05 264);
+  /* Cards */
+  --color-surface-700: oklch(0.30 0.06 264);
+  /* Elevated */
+  --color-surface-600: oklch(0.40 0.07 264);
+  /* Borders */
+  --color-surface-500: oklch(0.50 0.06 264);
+  /* Muted */
+
+  /* === Primary Colors (Cosmic Violet) - OKLCH === */
+  --color-primary-200: oklch(0.88 0.08 284);
+  --color-primary-300: oklch(0.80 0.14 284);
+  --color-primary-400: oklch(0.70 0.20 284);
+  --color-primary-500: oklch(0.62 0.22 284);
+  /* Main Brand */
+  --color-primary-600: oklch(0.52 0.24 284);
+  --color-primary-700: oklch(0.42 0.22 284);
+
+  /* === Secondary Colors (Nebula Teal) - OKLCH === */
+  --color-secondary-200: oklch(0.92 0.06 190);
+  --color-secondary-300: oklch(0.85 0.10 190);
+  --color-secondary-400: oklch(0.78 0.15 190);
+  --color-secondary-500: oklch(0.68 0.18 190);
+  /* Vibrant Teal */
+  --color-secondary-600: oklch(0.58 0.20 190);
+  --color-secondary-700: oklch(0.48 0.18 190);
+
+  /* === Accent Colors (Starfire Gold) - OKLCH === */
+  --color-accent-300: oklch(0.90 0.12 65);
+  --color-accent-400: oklch(0.82 0.15 65);
+  --color-accent-500: oklch(0.75 0.18 65);
+  /* Warm Accent */
+  --color-accent-600: oklch(0.65 0.20 65);
+
+  /* === Semantic Colors (Aurora) - OKLCH === */
+  --color-success: oklch(0.65 0.18 150);
+  /* Emerald */
+  --color-success-light: oklch(0.75 0.15 150);
+  --color-warning: oklch(0.80 0.15 85);
+  /* Amber */
+  --color-warning-light: oklch(0.88 0.12 85);
+  --color-danger: oklch(0.60 0.22 25);
+  /* Rose */
+  --color-danger-light: oklch(0.70 0.18 25);
+  --color-info: oklch(0.65 0.18 240);
+  /* Azure */
+  --color-info-light: oklch(0.75 0.15 240);
+
+  /* === Text Colors - OKLCH === */
+  --color-text-primary: oklch(0.98 0.00 0);
+  /* Pure White */
+  --color-text-secondary: oklch(0.85 0.04 264);
+  /* Blue-tinted Silver */
+  --color-text-muted: oklch(0.65 0.06 264);
+  /* Muted Blue-Grey */
+  --color-text-disabled: oklch(0.45 0.06 264);
+  --color-text-inverse: oklch(0.10 0.03 264);
+
+  /* === Border Radius === */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* === Animations === */
+  --animate-orbit-float: orbit-float 3s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-fade-slide-up: fade-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-shimmer: shimmer 1.5s infinite linear;
+  --animate-gentle-float: gentle-float 4s ease-in-out infinite;
+}
+
+/* ============================================
+   2. CSS CUSTOM PROPERTIES (Backwards Compat)
    ============================================ */
 
 :root {
-  /* === Deep Space - Background Tiers === 
-   * Rich dark blues with subtle purple undertones
-   */
-  --space-950: #020617;
-  /* Deepest - page bg */
-  --space-900: #0f172a;
-  /* Sections */
-  --space-800: #1e293b;
-  /* Cards */
-  --space-700: #334155;
-  /* Elevated */
-  --space-600: #475569;
-  /* Borders */
-  --space-500: #64748b;
-  /* Muted elements */
+  /* === Legacy Color Aliases (for existing components) === */
+  --space-950: var(--color-surface-950);
+  --space-900: var(--color-surface-900);
+  --space-800: var(--color-surface-800);
+  --space-700: var(--color-surface-700);
+  --space-600: var(--color-surface-600);
+  --space-500: var(--color-surface-500);
 
-  /* === Nebula Accent - Primary Brand === 
-   * Vibrant indigo-violet for CTAs and focus
-   */
-  --nebula-200: #c7d2fe;
-  --nebula-300: #a5b4fc;
-  --nebula-400: #818cf8;
-  --nebula-500: #6366f1;
-  /* Primary */
-  --nebula-600: #4f46e5;
-  --nebula-700: #4338ca;
-  --nebula-glow: rgba(99, 102, 241, 0.4);
-  --nebula-glow-strong: rgba(99, 102, 241, 0.6);
+  --nebula-200: var(--color-primary-200);
+  --nebula-300: var(--color-primary-300);
+  --nebula-400: var(--color-primary-400);
+  --nebula-500: var(--color-primary-500);
+  --nebula-600: var(--color-primary-600);
+  --nebula-700: var(--color-primary-700);
+  --nebula-glow: rgba(124, 58, 237, 0.4);
+  /* fallback */
+  --nebula-glow: color-mix(in oklch, var(--color-primary-500) 40%, transparent);
+  --nebula-glow-strong: rgba(124, 58, 237, 0.6);
+  /* fallback */
+  --nebula-glow-strong: color-mix(in oklch, var(--color-primary-500) 60%, transparent);
 
-  /* === Stellar - Secondary Accent === 
-   * Rich purple for variety and depth
-   */
-  --stellar-200: #ddd6fe;
-  --stellar-300: #c4b5fd;
-  --stellar-400: #a78bfa;
-  --stellar-500: #8b5cf6;
-  /* Secondary */
-  --stellar-600: #7c3aed;
-  --stellar-700: #6d28d9;
+  --stellar-200: var(--color-secondary-200);
+  --stellar-300: var(--color-secondary-300);
+  --stellar-400: var(--color-secondary-400);
+  --stellar-500: var(--color-secondary-500);
+  --stellar-600: var(--color-secondary-600);
+  --stellar-700: var(--color-secondary-700);
 
-  /* === Cyan Accent - Fresh Highlights ===
-   * Bright cyan for special elements
-   */
-  --cyan-300: #67e8f9;
-  --cyan-400: #22d3ee;
-  --cyan-500: #06b6d4;
-  --cyan-600: #0891b2;
+  /* Note: 'cyan' alias now maps to Gold Accent for better contrast */
+  --cyan-300: var(--color-accent-300);
+  --cyan-400: var(--color-accent-400);
+  --cyan-500: var(--color-accent-500);
+  --cyan-600: var(--color-accent-600);
 
-  /* === Aurora - Semantic Colors ===
-   * Bright, saturated feedback colors
-   */
-  --aurora-success: #10b981;
-  --aurora-success-light: #34d399;
+  --aurora-success: var(--color-success);
+  --aurora-success-light: var(--color-success-light);
   --aurora-success-muted: rgba(16, 185, 129, 0.15);
-
-  --aurora-warning: #f59e0b;
-  --aurora-warning-light: #fbbf24;
+  /* fallback */
+  --aurora-success-muted: color-mix(in oklch, var(--color-success) 15%, transparent);
+  --aurora-warning: var(--color-warning);
+  --aurora-warning-light: var(--color-warning-light);
   --aurora-warning-muted: rgba(245, 158, 11, 0.15);
-
-  --aurora-danger: #ef4444;
-  --aurora-danger-light: #f87171;
+  /* fallback */
+  --aurora-warning-muted: color-mix(in oklch, var(--color-warning) 15%, transparent);
+  --aurora-danger: var(--color-danger);
+  --aurora-danger-light: var(--color-danger-light);
   --aurora-danger-muted: rgba(239, 68, 68, 0.15);
-
-  --aurora-info: #0ea5e9;
-  --aurora-info-light: #38bdf8;
+  /* fallback */
+  --aurora-danger-muted: color-mix(in oklch, var(--color-danger) 15%, transparent);
+  --aurora-info: var(--color-info);
+  --aurora-info-light: var(--color-info-light);
   --aurora-info-muted: rgba(14, 165, 233, 0.15);
+  /* fallback */
+  --aurora-info-muted: color-mix(in oklch, var(--color-info) 15%, transparent);
 
-  /* === Stardust - Text Hierarchy ===
-   * High contrast text for readability
-   */
-  --text-primary: #f1f5f9;
-  /* Headlines - slate-100 */
-  --text-secondary: #cbd5e1;
-  /* Body - slate-300 */
-  --text-muted: #94a3b8;
-  /* Captions - slate-400 */
-  --text-disabled: #64748b;
-  /* Disabled - slate-500 */
-  --text-inverse: #0f172a;
-  /* Text on light bg */
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --text-disabled: var(--color-text-disabled);
+  --text-inverse: var(--color-text-inverse);
 
-  /* === Glass Surface System ===
-   * Layered translucent surfaces
-   */
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-bg-elevated: rgba(30, 41, 59, 0.85);
-  --glass-bg-subtle: rgba(15, 23, 42, 0.5);
-  --glass-bg-solid: #1e293b;
+  /* === Glass Surface System (with fallbacks for older browsers) === */
+  --glass-bg: rgba(17, 24, 39, 0.8);
+  /* fallback */
+  --glass-bg: color-mix(in oklch, var(--color-surface-900) 80%, transparent);
+  --glass-bg-elevated: rgba(31, 41, 55, 0.85);
+  /* fallback */
+  --glass-bg-elevated: color-mix(in oklch, var(--color-surface-800) 85%, transparent);
+  --glass-bg-subtle: rgba(17, 24, 39, 0.5);
+  /* fallback */
+  --glass-bg-subtle: color-mix(in oklch, var(--color-surface-900) 50%, transparent);
+  --glass-bg-solid: var(--color-surface-800);
   --glass-border: rgba(148, 163, 184, 0.12);
+  /* fallback */
+  --glass-border: color-mix(in oklch, var(--color-text-muted) 12%, transparent);
   --glass-border-strong: rgba(148, 163, 184, 0.25);
-  --glass-border-accent: rgba(99, 102, 241, 0.3);
-  --glass-glow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(99, 102, 241, 0.1);
-  --glass-glow-strong: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 100px rgba(99, 102, 241, 0.15);
+  /* fallback */
+  --glass-border-strong: color-mix(in oklch, var(--color-text-muted) 25%, transparent);
+  --glass-border-accent: rgba(124, 58, 237, 0.3);
+  /* fallback */
+  --glass-border-accent: color-mix(in oklch, var(--color-primary-500) 30%, transparent);
+  --glass-glow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 80px rgba(124, 58, 237, 0.1);
+  /* fallback */
+  --glass-glow: 0 8px 32px color-mix(in oklch, black 40%, transparent), 0 0 80px color-mix(in oklch, var(--color-primary-500) 10%, transparent);
+  --glass-glow-strong: 0 12px 48px rgba(0, 0, 0, 0.5), 0 0 100px rgba(124, 58, 237, 0.15);
+  /* fallback */
+  --glass-glow-strong: 0 12px 48px color-mix(in oklch, black 50%, transparent), 0 0 100px color-mix(in oklch, var(--color-primary-500) 15%, transparent);
 
   /* === Gradient Presets === */
-  --gradient-nebula: linear-gradient(135deg, var(--nebula-500) 0%, var(--stellar-500) 100%);
-  --gradient-aurora: linear-gradient(135deg, var(--cyan-400) 0%, var(--nebula-500) 50%, var(--stellar-500) 100%);
-  --gradient-sunset: linear-gradient(135deg, var(--aurora-danger-light) 0%, var(--stellar-500) 100%);
-  --gradient-cosmic: linear-gradient(180deg, var(--space-950) 0%, var(--space-900) 50%, var(--space-800) 100%);
+  --gradient-nebula: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-secondary-500) 100%);
+  --gradient-aurora: linear-gradient(135deg, var(--color-accent-400) 0%, var(--color-primary-500) 50%, var(--color-secondary-500) 100%);
+  --gradient-sunset: linear-gradient(135deg, var(--color-accent-500) 0%, var(--color-danger-500) 50%, var(--color-primary-600) 100%);
+  --gradient-cosmic: linear-gradient(180deg, var(--color-surface-950) 0%, var(--color-surface-900) 50%, var(--color-surface-800) 100%);
 
   /* === Typography === */
-  --font-display: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-body: 'Cairo', 'Inter', system-ui, -apple-system, sans-serif;
-
-  /* === Spacing Scale (8px base) === */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
+  --font-display: var(--font-ibm-plex), 'IBM Plex Sans Arabic', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-ibm-plex), 'IBM Plex Sans Arabic', 'Inter', system-ui, -apple-system, sans-serif;
 
   /* === Motion === */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -150,12 +223,12 @@
   --radius-full: 9999px;
 
   /* === Shadows === */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
-  --shadow-nebula: 0 0 20px var(--nebula-glow), 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-nebula-lg: 0 0 40px var(--nebula-glow-strong), 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px color-mix(in oklch, black 30%, transparent);
+  --shadow-md: 0 4px 6px color-mix(in oklch, black 40%, transparent);
+  --shadow-lg: 0 10px 15px color-mix(in oklch, black 50%, transparent);
+  --shadow-xl: 0 20px 25px color-mix(in oklch, black 60%, transparent);
+  --shadow-nebula: 0 0 20px var(--nebula-glow), 0 4px 12px color-mix(in oklch, black 40%, transparent);
+  --shadow-nebula-lg: 0 0 40px var(--nebula-glow-strong), 0 8px 24px color-mix(in oklch, black 50%, transparent);
 }
 
 /* ============================================
@@ -180,8 +253,8 @@ body {
 
   /* Cosmic background gradient */
   background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 0%, color-mix(in oklch, var(--color-primary-500) 8%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, color-mix(in oklch, var(--color-primary-400) 6%, transparent) 0%, transparent 50%),
     linear-gradient(180deg, var(--space-950) 0%, var(--space-900) 100%);
   background-attachment: fixed;
   min-height: 100vh;
@@ -309,12 +382,12 @@ body {
 .btn-primary {
   background: linear-gradient(135deg, var(--nebula-500) 0%, var(--nebula-600) 100%);
   color: white;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 14px color-mix(in oklch, var(--nebula-500) 35%, transparent);
 }
 
 .btn-primary:hover:not(:disabled) {
   background: linear-gradient(135deg, var(--nebula-400) 0%, var(--nebula-500) 100%);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  box-shadow: 0 6px 20px color-mix(in oklch, var(--nebula-500) 45%, transparent);
   transform: translateY(-1px);
 }
 
@@ -351,7 +424,7 @@ body {
 .btn-danger {
   background: var(--aurora-danger-muted);
   color: var(--aurora-danger);
-  border: 1px solid rgba(248, 113, 113, 0.3);
+  border: 1px solid color-mix(in oklch, var(--aurora-danger) 30%, transparent);
 }
 
 .btn-danger:hover:not(:disabled) {
@@ -361,13 +434,13 @@ body {
 
 /* Success Button (WhatsApp) */
 .btn-success {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background: linear-gradient(135deg, var(--aurora-success-light) 0%, var(--aurora-success) 100%);
   color: white;
-  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.35);
+  box-shadow: 0 4px 14px color-mix(in oklch, var(--aurora-success) 35%, transparent);
 }
 
 .btn-success:hover:not(:disabled) {
-  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.45);
+  box-shadow: 0 6px 20px color-mix(in oklch, var(--aurora-success) 45%, transparent);
   transform: translateY(-1px);
 }
 
