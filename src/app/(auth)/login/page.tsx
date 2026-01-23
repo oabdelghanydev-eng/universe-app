@@ -1,16 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
 import { createSession } from '@/actions/auth';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 export default function LoginPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // Clear any potentially invalid session cookie on mount
+    // This prevents redirect loops when middleware sees cookie but getServerSession fails
+    useEffect(() => {
+        document.cookie = 'session=; Max-Age=0; path=/';
+    }, []);
 
     async function handleGoogleLogin() {
         setLoading(true);
@@ -74,7 +81,7 @@ export default function LoginPage() {
                         className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-50 text-gray-700 font-medium rounded-xl px-6 py-3.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
                     >
                         {loading ? (
-                            <span className="w-5 h-5 border-2 border-gray-300 border-t-nebula-600 rounded-full animate-spin" />
+                            <LoadingSpinner size="sm" variant="primary" />
                         ) : (
                             <svg className="w-5 h-5" viewBox="0 0 24 24">
                                 <path
