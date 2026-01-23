@@ -5,6 +5,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 import { algoliaClient, searchIndexName } from '@/lib/algolia/client';
 import ListingCard, { ListingCardSkeleton } from './ListingCard';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 // ============================================
 // Types
@@ -238,7 +239,7 @@ export default function ListingsFeed({
                 {/* Clear / Loading */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2">
                     {isLoading && query ? (
-                        <div className="w-5 h-5 border-2 border-[var(--nebula-500)] border-t-transparent rounded-full animate-spin" />
+                        <LoadingSpinner size="sm" variant="primary" />
                     ) : query ? (
                         <button
                             onClick={clearSearch}
@@ -262,8 +263,8 @@ export default function ListingsFeed({
                             key={filter}
                             onClick={() => setTypeFilter(filter)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
-                                    ? 'bg-gradient-to-r from-nebula-500 to-nebula-600 text-white shadow-nebula'
-                                    : 'glass hover:bg-[var(--glass-bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                                ? 'bg-gradient-to-r from-nebula-500 to-nebula-600 text-white shadow-nebula'
+                                : 'glass hover:bg-[var(--glass-bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                                 }`}
                             aria-pressed={isActive}
                         >
@@ -353,7 +354,7 @@ export default function ListingsFeed({
             <div ref={loadMoreRef} className="py-4">
                 {isLoadingMore && (
                     <div className="flex items-center justify-center gap-3 text-[var(--text-muted)]">
-                        <div className="w-5 h-5 border-2 border-[var(--nebula-500)] border-t-transparent rounded-full animate-spin" />
+                        <LoadingSpinner size="sm" variant="primary" />
                         <span>جاري التحميل...</span>
                     </div>
                 )}

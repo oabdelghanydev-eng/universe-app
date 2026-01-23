@@ -14,18 +14,22 @@ import { useState, useEffect, useCallback } from 'react';
 const urlCache = new Map<string, { url: string; expiresAt: number }>();
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
-// Batch pending requests
-let batchQueue: string[] = [];
-let batchTimeout: NodeJS.Timeout | null = null;
-let batchPromise: Promise<Record<string, string>> | null = null;
-const batchCallbacks: ((urls: Record<string, string>) => void)[] = [];
+// Batch pending requests - scoped per batch window to avoid race conditions
+interface PendingBatch {
+    paths: string[];
+    callbacks: ((urls: Record<string, string>) => void)[];
+    timeout: NodeJS.Timeout | null;
+}
 
-async function executeBatch(): Promise<Record<string, string>> {
-    const paths = [...new Set(batchQueue)];
-    batchQueue = [];
-    batchTimeout = null;
+let currentBatch: PendingBatch | null = null;
 
-    if (paths.length === 0) return {};
+async function executeBatch(batch: PendingBatch): Promise<void> {
+    const paths = [...new Set(batch.paths)];
+
+    if (paths.length === 0) {
+        batch.callbacks.forEach(cb => cb({}));
+        return;
+    }
 
     try {
         const response = await fetch('/api/images/hydrate', {
@@ -47,17 +51,11 @@ async function executeBatch(): Promise<Record<string, string>> {
             urlCache.set(path, { url, expiresAt: now + CACHE_TTL });
         }
 
-        // Notify all callbacks
-        batchCallbacks.forEach(cb => cb(urls));
-        batchCallbacks.length = 0;
-
-        return urls;
+        // Notify only THIS batch's callbacks (scoped, no race condition)
+        batch.callbacks.forEach(cb => cb(urls));
     } catch (error) {
         console.error('Image hydration error:', error);
-        batchCallbacks.length = 0;
-        return {};
-    } finally {
-        batchPromise = null;
+        batch.callbacks.forEach(cb => cb({}));
     }
 }
 
@@ -83,17 +81,31 @@ function queueHydration(paths: string[]): Promise<Record<string, string>> {
             return;
         }
 
-        // Add to batch queue
-        batchQueue.push(...uncached);
-        batchCallbacks.push((urls) => {
+        // Create new batch if none exists
+        if (!currentBatch) {
+            currentBatch = {
+                paths: [],
+                callbacks: [],
+                timeout: null,
+            };
+        }
+
+        // Add to current batch
+        currentBatch.paths.push(...uncached);
+        const batchRef = currentBatch; // Capture reference for closure
+        currentBatch.callbacks.push((urls) => {
             resolve({ ...cached, ...urls });
         });
 
-        // Schedule batch execution
-        if (!batchTimeout) {
-            batchTimeout = setTimeout(() => {
-                batchPromise = executeBatch();
-            }, 50); // 50ms debounce
+        // Schedule batch execution (debounced)
+        if (!currentBatch.timeout) {
+            currentBatch.timeout = setTimeout(() => {
+                const batchToExecute = currentBatch;
+                currentBatch = null; // Allow new batch to form
+                if (batchToExecute) {
+                    executeBatch(batchToExecute);
+                }
+            }, 50);
         }
     });
 }

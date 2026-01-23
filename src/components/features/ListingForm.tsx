@@ -3,6 +3,7 @@
 
 import { useState, useRef } from 'react';
 import type { ListingType, ContactMethod, ListingInput } from '@/types';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 interface ListingFormProps {
     onSubmit: (data: ListingInput, images: File[]) => Promise<void>;
@@ -370,7 +371,7 @@ export default function ListingForm({
             >
                 {isLoading ? (
                     <span className="flex items-center justify-center gap-2">
-                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <LoadingSpinner size="sm" variant="white" />
                         جاري {isEdit ? 'التحديث' : 'النشر'}...
                     </span>
                 ) : (
@@ -453,8 +454,8 @@ function ContactButton({
             type="button"
             onClick={onClick}
             className={`py-4 px-4 rounded-xl transition-all duration-300 text-center ${selected
-                    ? `border-2 ${colorConfig.border} backdrop-blur-md`
-                    : 'glass-unselected'
+                ? `border-2 ${colorConfig.border} backdrop-blur-md`
+                : 'glass-unselected'
                 }`}
             style={selected ? {
                 background: colorConfig.bg,

@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 interface DeleteConfirmModalProps {
     isOpen: boolean;
@@ -36,28 +37,38 @@ export default function DeleteConfirmModal({
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-xl p-6 max-w-md w-full">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {title}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                    {message}
-                </p>
+        <div className="modal-backdrop">
+            <div className="card-elevated p-6 max-w-md w-full animate-fade-slide-up">
+                <div className="text-center mb-6">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--aurora-danger-muted)] mb-4">
+                        <span className="text-2xl">🗑️</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
+                        {title}
+                    </h3>
+                    <p className="text-[var(--text-secondary)]">
+                        {message}
+                    </p>
+                </div>
                 <div className="flex gap-3">
                     <button
                         onClick={onClose}
-                        className="flex-1 btn bg-gray-100 hover:bg-gray-200 text-gray-700 py-2"
+                        className="flex-1 btn btn-secondary py-2.5"
                         disabled={isDeleting}
                     >
                         {cancelText}
                     </button>
                     <button
                         onClick={handleConfirm}
-                        className="flex-1 btn bg-red-500 hover:bg-red-600 text-white py-2"
+                        className="flex-1 btn btn-danger py-2.5 flex justify-center items-center gap-2"
                         disabled={isDeleting}
                     >
-                        {isDeleting ? 'جاري الحذف...' : confirmText}
+                        {isDeleting ? (
+                            <>
+                                <LoadingSpinner size="sm" variant="white" />
+                                <span>جاري الحذف...</span>
+                            </>
+                        ) : confirmText}
                     </button>
                 </div>
             </div>
