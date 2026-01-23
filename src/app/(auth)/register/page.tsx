@@ -90,13 +90,13 @@ export default function RegisterPage() {
                 {/* Progress Indicator */}
                 <div className="flex items-center justify-center gap-3 mb-8">
                     <div className={`w-3 h-3 rounded-full transition-all duration-300 ${step === 'google'
-                            ? 'bg-[var(--nebula-500)] ring-4 ring-[var(--nebula-500)]/30'
-                            : 'bg-[var(--nebula-500)]'
+                        ? 'bg-[var(--nebula-500)] ring-4 ring-[var(--nebula-500)]/30'
+                        : 'bg-[var(--nebula-500)]'
                         }`} />
                     <div className={`w-8 h-0.5 ${step === 'verify' ? 'bg-[var(--nebula-500)]' : 'bg-[var(--space-600)]'}`} />
                     <div className={`w-3 h-3 rounded-full transition-all duration-300 ${step === 'verify'
-                            ? 'bg-[var(--nebula-500)] ring-4 ring-[var(--nebula-500)]/30'
-                            : 'bg-[var(--space-600)]'
+                        ? 'bg-[var(--nebula-500)] ring-4 ring-[var(--nebula-500)]/30'
+                        : 'bg-[var(--space-600)]'
                         }`} />
                 </div>
 
@@ -210,7 +210,6 @@ export default function RegisterPage() {
                                         pattern="\d{4,10}"
                                         required
                                         className="input"
-                                        dir="ltr"
                                     />
                                 </div>
 
