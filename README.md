@@ -161,4 +161,10 @@ IT Student
 
 ---
 
-**Built with ❤️ for University Students**
+<br>
+<div align="center">
+  <p><strong>تم التصميم والتنفيذ</strong></p>
+  <p>بقسم تكنولوجيا المعلومات</p>
+  <p>تحت إدارة وإشراف</p>
+  <h3>🎓 جامعة برج العرب التكنولوجية</h3>
+</div>
