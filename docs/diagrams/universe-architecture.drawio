@@ -1,0 +1,358 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.4" pages="2">
+  <diagram name="UniVerse Architecture" id="universe-arch">
+    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1;fontColor=#1a1a2e;" value="🎓 UniVerse - System Architecture" vertex="1">
+          <mxGeometry height="40" width="500" x="340" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" value="👤 User&#xa;(Student)" vertex="1">
+          <mxGeometry height="100" width="60" x="70" y="275" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" value="🌐 Browser&#xa;(React Client)" vertex="1">
+          <mxGeometry height="70" width="120" x="180" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vercel-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="450" width="340" x="333" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="vercel-label" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;" value="☁️ Vercel" vertex="1">
+          <mxGeometry height="30" width="200" x="403" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="nextjs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#ffffff;fontSize=14;fontStyle=1;" value="⚛️ Next.js 15&#xa;(App Router)" vertex="1">
+          <mxGeometry height="50" width="220" x="393" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="rsc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" value="📄 React Server Components&#xa;(SSR Pages)" vertex="1">
+          <mxGeometry height="60" width="140" x="358" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="actions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" value="⚡ Server Actions&#xa;(Backend Logic)" vertex="1">
+          <mxGeometry height="60" width="140" x="513" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="actions-list" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;align=left;spacingLeft=10;" value="• verifyAndRegisterStudent&#xa;• createListing&#xa;• updateListing&#xa;• deleteListing&#xa;• submitReport&#xa;• uploadImages" vertex="1">
+          <mxGeometry height="100" width="140" x="513" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="middleware" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="🔒 Middleware&#xa;(Session Renewal)" vertex="1">
+          <mxGeometry height="50" width="140" x="358" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="authcontext" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="🔐 Auth Context&#xa;(useAuth Hook)" vertex="1">
+          <mxGeometry height="50" width="140" x="358" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="lib" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="📦 lib/&#xa;(Firebase, Algolia, Supabase SDKs)" vertex="1">
+          <mxGeometry height="50" width="295" x="358" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow2" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;fontSize=13;" target="nextjs" value="HTTP Request">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="firebase-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9e6;strokeColor=#FFA500;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="280" width="280" x="782" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="firebase-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#e65100;" value="🔥 Firebase (Spark Plan - FREE)" vertex="1">
+          <mxGeometry height="30" width="240" x="802" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="firebase-auth" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=12;fontStyle=1;" value="🔐 Firebase Auth&#xa;(Google OAuth)" vertex="1">
+          <mxGeometry height="60" width="120" x="802" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="firestore" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" value="🗄️ Firestore&#xa;(Database)" vertex="1">
+          <mxGeometry height="80" width="100" x="802" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="collections" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;align=left;spacingLeft=5;" value="Collections:&#xa;• users&#xa;• students&#xa;• listings&#xa;• reports" vertex="1">
+          <mxGeometry height="80" width="130" x="912" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="session" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=10;" value="🍪 Session Cookie&#xa;(HTTP-Only, 5 days)" vertex="1">
+          <mxGeometry height="50" width="110" x="932" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6ffe6;strokeColor=#00cc66;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="130" width="180" x="859" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="supabase-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#00994d;" value="🗂️ Supabase Storage" vertex="1">
+          <mxGeometry height="25" width="160" x="879" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="storage" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#d4edda;strokeColor=#28a745;fontSize=10;align=left;spacingTop=2;spacingLeft=22;" value="🖼️ Images Bucket&#xa;• listing-images/&#xa;• Max 5 per listing&#xa;• WebP format" vertex="1">
+          <mxGeometry height="75" width="140" x="880" y="464" as="geometry" />
+        </mxCell>
+        <mxCell id="algolia-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f2ff;strokeColor=#0066cc;strokeWidth=2;dashed=1;" value="" vertex="1">
+          <mxGeometry height="130" width="180" x="761" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="algolia-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#003d99;" value="🔍 Algolia" vertex="1">
+          <mxGeometry height="25" width="160" x="771" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="algolia-index" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=10;align=left;spacingLeft=5;" value="📇 listings Index&#xa;• Search by title/desc&#xa;• Filter by type&#xa;• Pre-filtered data" vertex="1">
+          <mxGeometry height="70" width="140" x="781" y="645" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" edge="1" parent="1" source="actions-list" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#d6b656;fontSize=13;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="firestore" value="Admin SDK&#xa;(CRUD)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" edge="1" parent="1" source="actions-list" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0066cc;fontSize=13;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.62;exitDx=0;exitDy=0;exitPerimeter=0;" target="algolia-box" value="Sync on&#xa;Create/Update">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="653" y="370" />
+              <mxPoint x="720" y="370" />
+              <mxPoint x="720" y="570" />
+              <mxPoint x="851" y="570" />
+            </Array>
+            <mxPoint x="690" y="360" as="sourcePoint" />
+            <mxPoint x="850" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow5" edge="1" parent="1" source="lib" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#28a745;fontSize=13;" target="storage" value="Upload&#xa;Images">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow6" edge="1" parent="1" source="authcontext" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#cc0000;fontSize=13;" target="firebase-auth" value="OAuth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="410" />
+              <mxPoint x="750" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow7" edge="1" parent="1" source="browser" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0066cc;fontSize=13;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="algolia-box" value="Search&#xa;(Client SDK)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="665" />
+            </Array>
+            <mxPoint x="760" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" value="1️⃣" vertex="1">
+          <mxGeometry height="30" width="30" x="180" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="flow2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" value="2️⃣" vertex="1">
+          <mxGeometry height="30" width="30" x="403" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="flow3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" value="3️⃣" vertex="1">
+          <mxGeometry height="30" width="30" x="623" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="flow4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" value="4️⃣" vertex="1">
+          <mxGeometry height="30" width="30" x="859" y="427.5" as="geometry" />
+        </mxCell>
+        <mxCell id="j_7PYOvjE_hU10LPLOhc-1" edge="1" parent="1" source="supabase-label" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.825;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="supabase-label">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Request Flow" id="request-flow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Title -->
+        <mxCell id="title2" value="🔄 UniVerse - Request Flow" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        <!-- Section 1: Create Listing Flow -->
+        <mxCell id="section1" value="📝 Create Listing Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2d3436;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="200" height="30" as="geometry" />
+        </mxCell>
+        <!-- Flow steps -->
+        <mxCell id="step1" value="1. User fills form&#xa;in Browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step2" value="2. Images compressed&#xa;(browser-image-compression)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="180" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step3" value="3. Server Action&#xa;createListing()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step4" value="4. Verify Session&#xa;(getServerSession)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="450" y="120" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step5" value="5. Upload to&#xa;Supabase Storage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="580" y="120" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step6" value="6. Write to&#xa;Firestore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="700" y="120" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step7" value="7. Sync to&#xa;Algolia" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="120" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step8" value="✅ Return&#xa;Success" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="910" y="120" width="70" height="50" as="geometry" />
+        </mxCell>
+        <!-- Arrows -->
+        <mxCell id="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step2" target="step3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step3" target="step4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step4" target="step5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step5" target="step6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step6" target="step7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#666;" edge="1" parent="1" source="step7" target="step8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Section 2: Auth Flow -->
+        <mxCell id="section2" value="🔐 Authentication Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2d3436;" vertex="1" parent="1">
+          <mxGeometry x="60" y="210" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="auth1" value="1. User clicks&#xa;&#39;Login with Google&#39;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth2" value="2. Firebase Auth&#xa;(signInWithPopup)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="190" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth3" value="3. Get ID Token&#xa;(getIdToken)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="320" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth4" value="4. POST /api/auth&#xa;(Create Session)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth5" value="5. Verify Token&#xa;(Admin SDK)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="570" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth6" value="6. Create Session&#xa;Cookie (5 days)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="690" y="250" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="auth7" value="7. Redirect to&#xa;Registration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="250" width="100" height="50" as="geometry" />
+        </mxCell>
+        <!-- Arrows for Auth -->
+        <mxCell id="a1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#cc0000;" edge="1" parent="1" source="auth1" target="auth2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#cc0000;" edge="1" parent="1" source="auth2" target="auth3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="auth3" target="auth4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="auth4" target="auth5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#d79b00;" edge="1" parent="1" source="auth5" target="auth6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="auth6" target="auth7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Section 3: Search Flow -->
+        <mxCell id="section3" value="🔍 Search Flow (Client-Side)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2d3436;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="search1" value="1. User types&#xa;search query" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="380" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="search2" value="2. Algolia Client SDK&#xa;(algoliasearch/lite)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="380" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="search3" value="3. Direct API call&#xa;to Algolia CDN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="360" y="380" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="search4" value="4. Results with&#xa;pre-applied filters&#xa;(isDeleted:false)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="380" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="search5" value="5. Render&#xa;ListingCard grid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="670" y="380" width="100" height="50" as="geometry" />
+        </mxCell>
+        <!-- Arrows for Search -->
+        <mxCell id="s1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0066cc;" edge="1" parent="1" source="search1" target="search2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0066cc;" edge="1" parent="1" source="search2" target="search3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="search3" target="search4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="search4" target="search5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Section 4: Report Flow -->
+        <mxCell id="section4" value="🚨 Report Flow (Auto-Flag)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2d3436;" vertex="1" parent="1">
+          <mxGeometry x="60" y="470" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="rep1" value="1. User reports&#xa;listing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="510" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep2" value="2. submitReport()&#xa;Server Action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="510" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep3" value="3. Check duplicate&#xa;(composite ID)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="290" y="510" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep4" value="4. Save report&#xa;to Firestore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="410" y="510" width="90" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep5" value="5. Count pending&#xa;reports (≥3?)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="520" y="510" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep6" value="6. If ≥3: Set&#xa;isFlagged=true" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="510" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rep7" value="7. Delete from&#xa;Algolia" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="510" width="90" height="50" as="geometry" />
+        </mxCell>
+        <!-- Arrows for Report -->
+        <mxCell id="r1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="rep1" target="rep2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#b85450;" edge="1" parent="1" source="rep2" target="rep3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#d6b656;" edge="1" parent="1" source="rep3" target="rep4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#d79b00;" edge="1" parent="1" source="rep4" target="rep5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#b85450;" edge="1" parent="1" source="rep5" target="rep6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0066cc;" edge="1" parent="1" source="rep6" target="rep7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- Color Legend -->
+        <mxCell id="leg-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#999;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="900" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-title" value="Color Key:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="610" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c1" value="Browser/Form" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="150" y="615" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c2" value="Server Action" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="240" y="615" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c3" value="Security Check" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="330" y="615" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c4" value="Firebase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="420" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c5" value="Firestore" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="500" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c6" value="Supabase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="580" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c7" value="Algolia" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cce6ff;strokeColor=#0066cc;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="660" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c8" value="UI/Render" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="740" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-c9" value="Middleware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="820" y="615" width="70" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
