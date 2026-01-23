@@ -137,21 +137,25 @@ async function importStudents(records: StudentRecord[], dryRun: boolean): Promis
     for (let i = 0; i < records.length; i += BATCH_SIZE) {
         const batch = db.batch();
         const batchRecords = records.slice(i, i + BATCH_SIZE);
+
+        // OPTIMIZATION: Batch-fetch all existing docs in ONE network call (was N+1)
+        const refs = batchRecords.map(r => db.collection('students').doc(r.academicId));
+        const existingDocs = await db.getAll(...refs);
+        const existingIds = new Set(
+            existingDocs.filter(doc => doc.exists).map(doc => doc.id)
+        );
+
         let batchCreated = 0;
         let batchSkipped = 0;
 
         for (const record of batchRecords) {
-            const docRef = db.collection('students').doc(record.academicId);
-
-            // Check if exists
-            const existing = await docRef.get();
-
-            if (existing.exists) {
+            if (existingIds.has(record.academicId)) {
                 batchSkipped++;
                 continue;
             }
 
             if (!dryRun) {
+                const docRef = db.collection('students').doc(record.academicId);
                 batch.set(docRef, {
                     fullName: record.fullName,
                     isRegistered: false,
