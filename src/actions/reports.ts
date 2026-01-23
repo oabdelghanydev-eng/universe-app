@@ -170,8 +170,6 @@ export async function submitReport(
 // ============================================
 
 async function autoFlagListing(listingId: string, reportCount: number): Promise<void> {
-    console.log(`[AutoFlag] Flagging listing ${listingId} (${reportCount} reports)`);
-
     try {
         // Update listing to flagged
         await adminDb.collection('listings').doc(listingId).update({
@@ -184,8 +182,6 @@ async function autoFlagListing(listingId: string, reportCount: number): Promise<
             indexName: 'listings',
             objectID: listingId,
         });
-
-        console.log(`[AutoFlag] Successfully flagged and removed from search: ${listingId}`);
     } catch (error) {
         console.error(`[AutoFlag] Failed to flag listing ${listingId}:`, error);
         // Don't throw - the report was still created
