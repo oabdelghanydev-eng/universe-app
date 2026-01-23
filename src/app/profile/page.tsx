@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getUserListings, deleteListing } from '@/actions/listings';
 import { checkRegistrationStatus } from '@/actions/auth';
 import type { Listing } from '@/types';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -63,13 +64,7 @@ export default function ProfilePage() {
     if (isLoading) {
         return (
             <div className="min-h-[60vh] flex items-center justify-center">
-                <div className="text-center">
-                    <div className="relative w-16 h-16 mx-auto mb-4">
-                        <div className="absolute inset-0 rounded-full border-2 border-[var(--space-600)] border-t-[var(--nebula-400)] animate-spin" />
-                        <div className="absolute inset-3 rounded-full border-2 border-[var(--space-700)] border-b-[var(--stellar-400)] animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.75s' }} />
-                    </div>
-                    <p className="text-[var(--text-muted)]">جاري التحميل...</p>
-                </div>
+                <LoadingSpinner size="lg" label="جاري التحميل..." />
             </div>
         );
     }

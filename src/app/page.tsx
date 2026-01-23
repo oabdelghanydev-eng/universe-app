@@ -63,26 +63,28 @@ function LandingPage() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-4 max-w-2xl mx-auto leading-relaxed">
-                            منصة مغلقة لطلاب الجامعة
+                        <p className="text-xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 max-w-3xl mx-auto leading-tight">
+                            مجتمعك الجامعي، في مكان واحد 🚀
                         </p>
-                        <p className="text-lg text-[var(--text-muted)] mb-10 max-w-xl mx-auto">
-                            لعرض وبيع المنتجات والخدمات بأمان وثقة
+                        <p className="text-lg text-[var(--text-secondary)] mb-10 max-w-xl mx-auto leading-relaxed">
+                            بيع كتبك، اشتري اللي ناقصك، وقدم خدماتك لزمايلك في الجامعة.
+                            <br />
+                            <span className="text-[var(--nebula-400)]">آمن. موثق. حصري للطلاب.</span>
                         </p>
 
                         {/* CTA Buttons */}
                         <div className="flex gap-4 justify-center flex-wrap">
                             <Link
                                 href="/register"
-                                className="btn btn-primary px-8 py-3.5 text-lg shadow-nebula-lg"
+                                className="btn btn-primary px-8 py-4 text-lg shadow-nebula-lg hover:scale-105 transition-transform"
                             >
-                                ابدأ الآن
+                                سجل بإيميل الجامعة
                             </Link>
                             <Link
                                 href="/login"
-                                className="btn btn-secondary px-8 py-3.5 text-lg"
+                                className="btn btn-secondary px-8 py-4 text-lg"
                             >
-                                تسجيل الدخول
+                                دخول
                             </Link>
                         </div>
                     </div>
@@ -133,13 +135,43 @@ function LandingPage() {
                 </div>
             </section>
 
+            {/* How it Works Section */}
+            <section className="py-20 relative overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4">
+                            كيف يعمل UniVerse؟
+                        </h2>
+                        <p className="text-[var(--text-secondary)]">3 خطوات بسيطة للبدء</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 relative z-10">
+                        <StepCard
+                            number="1"
+                            title="سجل حسابك"
+                            description="استخدم إيميلك الجامعي عشان نضمن إن كل المستخدمين طلاب حقيقيين."
+                        />
+                        <StepCard
+                            number="2"
+                            title="تصفح أو انشر"
+                            description="دور على اللي ناقصك أو صور حاجاتك اللي مش محتاجها واعرضها للبيع."
+                        />
+                        <StepCard
+                            number="3"
+                            title="تواصل بأمان"
+                            description="اتفق مع البائع أو المشتري عبر الواتساب وتقابلوا في الجامعة."
+                        />
+                    </div>
+                </div>
+            </section>
+
             {/* Stats Section */}
-            <section className="py-16 border-t border-b border-[var(--glass-border)]">
+            <section className="py-16 border-t border-b border-[var(--glass-border)] bg-[var(--glass-bg)]">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         <StatCard number="100%" label="طلاب موثقين" />
                         <StatCard number="24/7" label="متاح دائماً" />
-                        <StatCard number="0" label="رسوم خفية" />
+                        <StatCard number="0ج" label="عمولة بيع" />
                         <StatCard number="∞" label="إعلانات مجانية" />
                     </div>
                 </div>
@@ -179,27 +211,31 @@ function AuthenticatedHome({ userName }: { userName: string }) {
         <div className="container mx-auto px-4 py-8">
             {/* Welcome Section */}
             <div className="mb-8 animate-fade-slide-up">
-                <p className="text-[var(--text-muted)] text-sm mb-1">{greeting}</p>
+                <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">👋</span>
+                    <p className="text-[var(--text-muted)] font-medium">{greeting}</p>
+                </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)]">
-                    أهلاً {firstName} 👋
+                    منور يا {firstName} 🌟
                 </h1>
             </div>
 
-            {/* Quick Actions */}
-            <div className="flex gap-3 mb-10 flex-wrap">
-                <Link
+            {/* Quick Actions Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12 animate-fade-slide-up" style={{ animationDelay: '0.1s' }}>
+                <ActionCard
                     href="/listing/new"
-                    className="btn btn-primary px-6 py-3"
-                >
-                    <span className="text-lg">+</span>
-                    انشر إعلان جديد
-                </Link>
-                <Link
+                    title="انشر إعلان جديد"
+                    description="بيع كتب، أدوات، أو اعرض خدماتك لزمايلك"
+                    icon="✨"
+                    variant="primary"
+                />
+                <ActionCard
                     href="/profile"
-                    className="btn btn-secondary px-6 py-3"
-                >
-                    📋 إعلاناتي
-                </Link>
+                    title="إعلاناتي وملفي"
+                    description="تابع حالة إعلاناتك، الرسايل، وتعديل بياناتك"
+                    icon="👤"
+                    variant="secondary"
+                />
             </div>
 
             {/* Listings Feed */}
@@ -279,11 +315,11 @@ function FeatureCard({
 // ============================================
 function StatCard({ number, label }: { number: string; label: string }) {
     return (
-        <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
+        <div className="text-center group">
+            <div className="text-3xl md:text-4xl font-bold text-gradient mb-2 group-hover:scale-110 transition-transform duration-300">
                 {number}
             </div>
-            <div className="text-[var(--text-muted)] text-sm">
+            <div className="text-[var(--text-muted)] text-sm font-medium">
                 {label}
             </div>
         </div>
@@ -291,12 +327,71 @@ function StatCard({ number, label }: { number: string; label: string }) {
 }
 
 // ============================================
+// Step Card Component (New)
+// ============================================
+function StepCard({ number, title, description }: { number: string; title: string; description: string }) {
+    return (
+        <div className="relative p-6 rounded-2xl glass hover:bg-[var(--glass-bg-elevated)] transition-colors text-center group">
+            <div className="w-12 h-12 bg-[var(--nebula-500)] text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-nebula group-hover:scale-110 transition-transform">
+                {number}
+            </div>
+            <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">
+                {title}
+            </h3>
+            <p className="text-[var(--text-secondary)] leading-relaxed">
+                {description}
+            </p>
+        </div>
+    );
+}
+
+// ============================================
+// Action Card Component (New)
+// ============================================
+function ActionCard({
+    href,
+    title,
+    description,
+    icon,
+    variant
+}: {
+    href: string;
+    title: string;
+    description: string;
+    icon: string;
+    variant: 'primary' | 'secondary'
+}) {
+    const isPrimary = variant === 'primary';
+    return (
+        <Link
+            href={href}
+            className={`flex items-start gap-4 p-6 rounded-2xl border transition-all duration-300 group
+                ${isPrimary
+                    ? 'bg-gradient-to-br from-nebula-500/10 to-nebula-600/5 border-nebula-500/20 hover:border-nebula-500/50 hover:shadow-nebula'
+                    : 'glass border-[var(--glass-border)] hover:border-[var(--text-muted)] hover:bg-[var(--glass-bg-elevated)]'
+                }`}
+        >
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-sm transition-transform group-hover:scale-110
+                ${isPrimary ? 'bg-nebula-500 text-white' : 'bg-[var(--surface-elevated)] text-[var(--text-primary)]'}`}>
+                {icon}
+            </div>
+            <div>
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-nebula-400 group-hover:to-stellar-400 transition-colors">
+                    {title}
+                </h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                    {description}
+                </p>
+            </div>
+        </Link>
+    );
+}
+
+// ============================================
 // Helper: Get Greeting based on time
 // ============================================
+// Static greeting to avoid server timezone issues (Vercel uses UTC)
 function getGreeting(): string {
-    const hour = new Date().getHours();
-    if (hour < 12) return 'صباح الخير';
-    if (hour < 17) return 'مساء الخير';
-    return 'مساء النور';
+    return 'مرحباً';
 }
 
