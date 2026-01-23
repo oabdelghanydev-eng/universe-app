@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniVerse - Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f1f5f9;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--darker);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slides-container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image:
+                radial-gradient(circle at 25% 25%, var(--primary) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, var(--secondary) 2px, transparent 2px);
+            background-size: 60px 60px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+        }
+
+        /* Glow Effects */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.5;
+            }
+        }
+
+        /* Slide 1: Hero */
+        .slide-hero {
+            background: var(--gradient-hero);
+        }
+
+        .slide-hero .glow-orb-1 {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            right: -200px;
+        }
+
+        .slide-hero .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #f59e0b;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-logo {
+            font-size: 120px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 32px;
+            font-weight: 600;
+            color: #a5b4fc;
+            margin-bottom: 40px;
+        }
+
+        .hero-tagline {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+        }
+
+        .author-badge {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .author-badge span {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Slide 2: Problem */
+        .slide-problem {
+            background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+        }
+
+        .slide-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 60px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .slide-title span {
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            z-index: 10;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(239, 68, 68, 0.5);
+            box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
+        }
+
+        .problem-icon {
+            font-size: 50px;
+            flex-shrink: 0;
+        }
+
+        .problem-text {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        /* Slide 3: Solution */
+        .slide-solution {
+            background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+        }
+
+        .solution-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1200px;
+            z-index: 10;
+        }
+
+        .solution-features {
+            flex: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(-10px);
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .feature-check {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .solution-visual {
+            flex: 1;
+            text-align: center;
+        }
+
+        .mockup-frame {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .mockup-frame::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: var(--gradient-4);
+            border-radius: 33px;
+            z-index: -1;
+        }
+
+        .mockup-inner {
+            background: var(--dark);
+            border-radius: 20px;
+            padding: 20px;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mockup-header {
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .mockup-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            flex: 1;
+        }
+
+        .mockup-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .mockup-card-img {
+            height: 60px;
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .mockup-card-text {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            margin-bottom: 8px;
+        }
+
+        .mockup-card-text:last-child {
+            width: 60%;
+        }
+
+        /* Slide 4: Tech Stack */
+        .slide-tech {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .tech-name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .tech-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tech-free-badge {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* Slide 5: Architecture */
+        .slide-arch {
+            background: linear-gradient(135deg, #312e81 0%, #0f172a 100%);
+        }
+
+        .arch-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            z-index: 10;
+        }
+
+        .arch-layer {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid;
+            min-width: 200px;
+        }
+
+        .arch-layer.client {
+            border-color: #f59e0b;
+        }
+
+        .arch-layer.server {
+            border-color: #10b981;
+        }
+
+        .arch-layer.data {
+            border-color: #6366f1;
+        }
+
+        .arch-layer.search {
+            border-color: #ec4899;
+        }
+
+        .arch-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .arch-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .arch-item {
+            font-size: 14px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .arch-arrow {
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Slide 6: Security */
+        .slide-security {
+            background: linear-gradient(135deg, #7c2d12 0%, #0f172a 100%);
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .security-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .security-card:hover {
+            transform: scale(1.05);
+            border-color: #fb923c;
+            box-shadow: 0 20px 40px rgba(251, 146, 60, 0.2);
+        }
+
+        .security-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .security-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .security-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Slide 7: Features */
+        .slide-features {
+            background: linear-gradient(135deg, #581c87 0%, #0f172a 100%);
+        }
+
+        .features-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .feature-showcase-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(79, 70, 229, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-showcase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(147, 51, 234, 0.3);
+        }
+
+        .feature-showcase-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .feature-showcase-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-showcase-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Slide 8: Demo Stats */
+        .slide-stats {
+            background: linear-gradient(135deg, #0f4c5c 0%, #0f172a 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1100px;
+            z-index: 10;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.08);
+            border-color: #14b8a6;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Slide 9: Thank You */
+        .slide-thanks {
+            background: var(--gradient-hero);
+        }
+
+        .thanks-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .thanks-emoji {
+            font-size: 100px;
+            margin-bottom: 30px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .thanks-title {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .thanks-subtitle {
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot:hover,
+        .nav-dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.3);
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+            opacity: 0.5;
+        }
+
+        .key {
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        /* Slide Footer */
+        .slide-footer {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            text-align: center;
+        }
+
+        .footer-content {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-line {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        .footer-department {
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        .footer-supervision {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+        }
+
+        .footer-university {
+            font-weight: 800;
+            font-size: 18px;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Dots -->
+    <nav class="nav-dots">
+        <div class="nav-dot active" data-slide="0"></div>
+        <div class="nav-dot" data-slide="1"></div>
+        <div class="nav-dot" data-slide="2"></div>
+        <div class="nav-dot" data-slide="3"></div>
+        <div class="nav-dot" data-slide="4"></div>
+        <div class="nav-dot" data-slide="5"></div>
+        <div class="nav-dot" data-slide="6"></div>
+        <div class="nav-dot" data-slide="7"></div>
+        <div class="nav-dot" data-slide="8"></div>
+    </nav>
+
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <span class="key">↑</span>
+        <span class="key">↓</span>
+        <span>للتنقل</span>
+    </div>
+
+    <div class="slides-container" id="slides">
+
+        <!-- Slide 1: Hero -->
+        <section class="slide slide-hero">
+            <div class="bg-pattern"></div>
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+            <div class="hero-content">
+                <div class="emoji-logo">🎓</div>
+                <h1 class="hero-title">UniVerse</h1>
+                <p class="hero-subtitle">منصة السوق الجامعي</p>
+                <p class="hero-tagline">منصة مغلقة وآمنة لطلاب الجامعة لعرض وبيع المنتجات والخدمات</p>
+            </div>
+            <div class="author-badge">
+                <span>👨‍💻</span>
+                <span>Omar Abdelghany | IT Student</span>
+            </div>
+        </section>
+
+        <!-- Slide 2: Problem -->
+        <section class="slide slide-problem">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">💭 <span>المشكلة</span></h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">📱</div>
+                    <div class="problem-text">جروبات واتساب وفيسبوك <strong>غير منظمة</strong> ومليانة spam</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👤</div>
+                    <div class="problem-text"><strong>صعوبة التحقق</strong> من هوية البائع - احتيال محتمل</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📅</div>
+                    <div class="problem-text">إعلانات <strong>قديمة ومتكررة</strong> ومش مرتبة</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🔒</div>
+                    <div class="problem-text"><strong>غياب مساحة موثوقة</strong> للطلاب داخل الجامعة</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Solution -->
+        <section class="slide slide-solution">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">✨ <span>الحل: UniVerse</span></h2>
+            <div class="solution-content">
+                <div class="solution-features">
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span class="feature-text">تسجيل بالـ Google + الرقم الأكاديمي</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span class="feature-text">التحقق من هوية الطالب 100%</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span class="feature-text">نشر إعلانات فوري بدون انتظار</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span class="feature-text">بحث ذكي مع تصحيح الأخطاء</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-check">✓</div>
+                        <span class="feature-text">تواصل مباشر (واتساب/اتصال)</span>
+                    </div>
+                </div>
+                <div class="solution-visual">
+                    <div class="mockup-frame">
+                        <div class="mockup-inner">
+                            <div class="mockup-header"></div>
+                            <div class="mockup-cards">
+                                <div class="mockup-card">
+                                    <div class="mockup-card-img"></div>
+                                    <div class="mockup-card-text"></div>
+                                    <div class="mockup-card-text"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <div class="mockup-card-img"></div>
+                                    <div class="mockup-card-text"></div>
+                                    <div class="mockup-card-text"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <div class="mockup-card-img"></div>
+                                    <div class="mockup-card-text"></div>
+                                    <div class="mockup-card-text"></div>
+                                </div>
+                                <div class="mockup-card">
+                                    <div class="mockup-card-img"></div>
+                                    <div class="mockup-card-text"></div>
+                                    <div class="mockup-card-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Tech Stack -->
+        <section class="slide slide-tech">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">🛠️ <span>التقنيات المستخدمة</span></h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">⚛️</div>
+                    <div class="tech-name">Next.js 15</div>
+                    <div class="tech-desc">App Router + React 19</div>
+                    <div class="tech-free-badge">Frontend</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔥</div>
+                    <div class="tech-name">Firebase</div>
+                    <div class="tech-desc">Auth + Firestore</div>
+                    <div class="tech-free-badge">FREE</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🗂️</div>
+                    <div class="tech-name">Supabase</div>
+                    <div class="tech-desc">Image Storage</div>
+                    <div class="tech-free-badge">FREE</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🔍</div>
+                    <div class="tech-name">Algolia</div>
+                    <div class="tech-desc">Full-text Search</div>
+                    <div class="tech-free-badge">FREE</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">Tailwind CSS</div>
+                    <div class="tech-desc">Styling Framework</div>
+                    <div class="tech-free-badge">UI</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📝</div>
+                    <div class="tech-name">TypeScript</div>
+                    <div class="tech-desc">Type Safety</div>
+                    <div class="tech-free-badge">Quality</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">✅</div>
+                    <div class="tech-name">Zod</div>
+                    <div class="tech-desc">Validation</div>
+                    <div class="tech-free-badge">Security</div>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">▲</div>
+                    <div class="tech-name">Vercel</div>
+                    <div class="tech-desc">Hosting + CI/CD</div>
+                    <div class="tech-free-badge">FREE</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Architecture -->
+        <section class="slide slide-arch">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">🏗️ <span>الهيكل المعماري</span></h2>
+            <div class="arch-diagram">
+                <div class="arch-layer client">
+                    <div class="arch-title">🖥️ Client</div>
+                    <div class="arch-items">
+                        <div class="arch-item">React Components</div>
+                        <div class="arch-item">Auth Context</div>
+                        <div class="arch-item">Algolia Search</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-layer server">
+                    <div class="arch-title">⚡ Server Actions</div>
+                    <div class="arch-items">
+                        <div class="arch-item">verifyStudent</div>
+                        <div class="arch-item">createListing</div>
+                        <div class="arch-item">submitReport</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-layer data">
+                    <div class="arch-title">💾 Data Layer</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Firestore DB</div>
+                        <div class="arch-item">Supabase Storage</div>
+                        <div class="arch-item">Session Cookies</div>
+                    </div>
+                </div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-layer search">
+                    <div class="arch-title">🔍 Search</div>
+                    <div class="arch-items">
+                        <div class="arch-item">Algolia Index</div>
+                        <div class="arch-item">Pre-filtered</div>
+                        <div class="arch-item">Typo-tolerant</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Security -->
+        <section class="slide slide-security">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">🔐 <span>الأمان والحماية</span></h2>
+            <div class="security-grid">
+                <div class="security-card">
+                    <div class="security-icon">🎓</div>
+                    <div class="security-title">التحقق من الهوية</div>
+                    <div class="security-desc">الرقم الأكاديمي + الاسم الكامل مطابق لبيانات شؤون الطلاب</div>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">🍪</div>
+                    <div class="security-title">Session Cookies</div>
+                    <div class="security-desc">HTTP-Only + Secure + SameSite للحماية من XSS و CSRF</div>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">📜</div>
+                    <div class="security-title">Firestore Rules</div>
+                    <div class="security-desc">Security Rules صارمة + Field-level Protection</div>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">🚨</div>
+                    <div class="security-title">Auto-Flag</div>
+                    <div class="security-desc">3 بلاغات = إخفاء تلقائي من البحث والعرض</div>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">✅</div>
+                    <div class="security-title">Input Validation</div>
+                    <div class="security-desc">Zod Schema + Sanitization لكل المدخلات</div>
+                </div>
+                <div class="security-card">
+                    <div class="security-icon">🔒</div>
+                    <div class="security-title">Server Actions</div>
+                    <div class="security-desc">كل العمليات الحساسة تتم Server-side</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Features -->
+        <section class="slide slide-features">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">⭐ <span>الميزات الرئيسية</span></h2>
+            <div class="features-showcase">
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">📝</div>
+                    <div class="feature-showcase-title">نشر سهل</div>
+                    <div class="feature-showcase-desc">نشر إعلان في دقيقة واحدة مع 5 صور</div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">🔍</div>
+                    <div class="feature-showcase-title">بحث ذكي</div>
+                    <div class="feature-showcase-desc">Typo-tolerant مع فلترة (منتج/خدمة)</div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">📱</div>
+                    <div class="feature-showcase-title">تواصل مباشر</div>
+                    <div class="feature-showcase-desc">واتساب أو اتصال بضغطة زر</div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">🖼️</div>
+                    <div class="feature-showcase-title">ضغط الصور</div>
+                    <div class="feature-showcase-desc">Client-side compression + WebP</div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">♾️</div>
+                    <div class="feature-showcase-title">Infinite Scroll</div>
+                    <div class="feature-showcase-desc">تحميل تلقائي عند التمرير</div>
+                </div>
+                <div class="feature-showcase-card">
+                    <div class="feature-showcase-icon">📱</div>
+                    <div class="feature-showcase-title">Mobile-First</div>
+                    <div class="feature-showcase-desc">تصميم متجاوب لجميع الأجهزة</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Stats -->
+        <section class="slide slide-stats">
+            <div class="bg-pattern"></div>
+            <h2 class="slide-title">📊 <span>الأرقام والإحصائيات</span></h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">$0</div>
+                    <div class="stat-label">تكلفة التشغيل</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1K+</div>
+                    <div class="stat-label">مستخدم شهرياً</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5K</div>
+                    <div class="stat-label">إعلان</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">&lt;2s</div>
+                    <div class="stat-label">وقت التحميل</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Thank You -->
+        <section class="slide slide-thanks">
+            <div class="bg-pattern"></div>
+            <div class="glow-orb glow-orb-1"></div>
+            <div class="glow-orb glow-orb-2"></div>
+            <div class="thanks-content">
+                <div class="thanks-emoji">🙏</div>
+                <h2 class="thanks-title">شكراً لانتباهكم</h2>
+                <p class="thanks-subtitle">أي أسئلة؟</p>
+                <div class="contact-links">
+                    <a href="#" class="contact-link">
+                        <span>🐙</span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span>💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#" class="contact-link">
+                        <span>📧</span>
+                        <span>Email</span>
+                    </a>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <div class="footer-content">
+                    <p class="footer-line">تم التصميم والتنفيذ</p>
+                    <p class="footer-line footer-department">بقسم تكنولوجيا المعلومات</p>
+                    <p class="footer-line footer-supervision">تحت إدارة وإشراف</p>
+                    <p class="footer-line footer-university">🎓 جامعة برج العرب التكنولوجية</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Navigation dots functionality
+        const dots = document.querySelectorAll('.nav-dot');
+        const slidesContainer = document.getElementById('slides');
+        const slides = document.querySelectorAll('.slide');
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const slideIndex = parseInt(dot.dataset.slide);
+                slides[slideIndex].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Update active dot on scroll
+        slidesContainer.addEventListener('scroll', () => {
+            const scrollPosition = slidesContainer.scrollTop;
+            const slideHeight = window.innerHeight;
+            const activeIndex = Math.round(scrollPosition / slideHeight);
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === activeIndex);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const currentScroll = slidesContainer.scrollTop;
+            const slideHeight = window.innerHeight;
+
+            if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+                e.preventDefault();
+                slidesContainer.scrollTo({
+                    top: currentScroll + slideHeight,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                slidesContainer.scrollTo({
+                    top: currentScroll - slideHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
