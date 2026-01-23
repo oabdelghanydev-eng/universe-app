@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useFirstImageUrl } from '@/hooks/useImageUrls';
 
@@ -54,9 +55,9 @@ function formatDate(timestamp: number): string {
 
         if (days === 0) return 'اليوم';
         if (days === 1) return 'أمس';
-        if (days < 7) return `منذ ${days} أيام`;
+        if (days < 7) return `منذ ${days.toLocaleString('en-US')} أيام`;
 
-        return new Date(timestamp).toLocaleDateString('ar-EG', {
+        return new Date(timestamp).toLocaleDateString('en-US', {
             month: 'short',
             day: 'numeric',
         });
@@ -97,11 +98,12 @@ export default function ListingCard({
                 {imageLoading ? (
                     <div className="w-full h-full skeleton" />
                 ) : hasValidImage ? (
-                    <img
-                        src={firstImageUrl}
+                    <Image
+                        src={firstImageUrl!}
                         alt=""
-                        className="w-full h-full object-cover transition-transform duration-500 ease-out-expo group-hover:scale-105"
-                        loading="lazy"
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 ease-out-expo group-hover:scale-105"
                         onError={() => setImageError(true)}
                     />
                 ) : (
@@ -115,15 +117,10 @@ export default function ListingCard({
                 {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--space-950)]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Type Badge */}
-                <span className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${typeConfig.gradient} text-white shadow-lg`}>
-                    {typeConfig.label}
-                </span>
-
                 {/* Image Count Badge */}
                 {totalImages > 1 && (
                     <span className="absolute bottom-3 left-3 px-2 py-1 glass rounded-md text-xs text-white font-medium">
-                        📷 {totalImages}
+                        📷 {totalImages.toLocaleString('en-US')}
                     </span>
                 )}
             </div>
@@ -140,27 +137,32 @@ export default function ListingCard({
                     {description}
                 </p>
 
-                {/* Footer: Price & Date */}
-                <div className="flex items-center justify-between">
+                {/* Footer: Price & Type Badge */}
+                <div className="flex items-center justify-between mb-3">
                     {/* Price */}
                     {price != null && price > 0 ? (
                         <span className="font-bold text-[var(--nebula-400)]">
-                            {price.toLocaleString('ar-EG')} ج.م
+                            {price.toLocaleString('en-US')} ج.م
                         </span>
                     ) : (
                         <span className="text-[var(--text-muted)] text-sm">تواصل للسعر</span>
                     )}
 
-                    {/* Date */}
-                    {formattedDate && (
-                        <time
-                            className="text-[var(--text-muted)] text-xs"
-                            dateTime={new Date(createdAt).toISOString()}
-                        >
-                            {formattedDate}
-                        </time>
-                    )}
+                    {/* Type Badge */}
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${typeConfig.gradient} text-white`}>
+                        {typeConfig.label}
+                    </span>
                 </div>
+
+                {/* Date */}
+                {formattedDate && (
+                    <time
+                        className="text-[var(--text-muted)] text-xs block"
+                        dateTime={new Date(createdAt).toISOString()}
+                    >
+                        {formattedDate}
+                    </time>
+                )}
             </div>
         </Link>
     );
