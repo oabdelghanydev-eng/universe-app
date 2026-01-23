@@ -16,35 +16,41 @@ import { resolve } from 'path';
 
 function getAdminApp(): App {
     if (getApps().length === 0) {
-        // Try to use GOOGLE_APPLICATION_CREDENTIALS file path first
-        // Falls back to FIREBASE_SERVICE_ACCOUNT_KEY JSON string for Vercel
-        let serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+        // Priority 1: Use FIREBASE_SERVICE_ACCOUNT_KEY (JSON String)
+        // Best for Vercel / Production where files aren't committed
         const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
+        if (serviceAccountJson) {
+            try {
+                const serviceAccount = JSON.parse(serviceAccountJson);
+                return initializeApp({
+                    credential: cert(serviceAccount),
+                    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+                });
+            } catch (error) {
+                console.error('Error parsing FIREBASE_SERVICE_ACCOUNT_KEY:', error);
+                // Fallthrough to try file path if JSON parse fails
+            }
+        }
 
+        // Priority 2: Use GOOGLE_APPLICATION_CREDENTIALS (File Path)
+        // Best for Local Development
+        let serviceAccountPath = process.env.GOOGLE_APPLICATION_CREDENTIALS;
         if (serviceAccountPath) {
             // Resolve relative paths from project root
             if (serviceAccountPath.startsWith('./') || serviceAccountPath.startsWith('../')) {
                 serviceAccountPath = resolve(process.cwd(), serviceAccountPath);
             }
 
-            // Local development - uses file path
             return initializeApp({
                 credential: cert(serviceAccountPath),
                 storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
             });
-        } else if (serviceAccountJson) {
-            // Production (Vercel) - uses JSON string
-            const serviceAccount = JSON.parse(serviceAccountJson);
-            return initializeApp({
-                credential: cert(serviceAccount),
-                storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-            });
-        } else {
-            throw new Error(
-                'Firebase Admin SDK: No credentials found. ' +
-                'Set GOOGLE_APPLICATION_CREDENTIALS or FIREBASE_SERVICE_ACCOUNT_KEY'
-            );
         }
+
+        throw new Error(
+            'Firebase Admin SDK: No credentials found. ' +
+            'Set FIREBASE_SERVICE_ACCOUNT_KEY (JSON string) or GOOGLE_APPLICATION_CREDENTIALS (file path)'
+        );
     }
     return getApps()[0];
 }
