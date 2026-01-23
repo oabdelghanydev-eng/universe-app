@@ -83,15 +83,28 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div className="border-t border-[var(--glass-border)]">
-                <div className="container mx-auto px-4 py-4">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm text-[var(--text-muted)]">
-                        <p>
+                <div className="container mx-auto px-4 py-6">
+                    <div className="flex flex-col items-center gap-4 text-center">
+                        {/* University Info */}
+                        <div className="flex flex-col items-center gap-1">
+                            <p className="text-sm text-[var(--text-muted)]">
+                                تم التصميم والتنفيذ
+                            </p>
+                            <p className="text-sm font-semibold text-[var(--text-secondary)]">
+                                بقسم تكنولوجيا المعلومات
+                            </p>
+                            <p className="text-xs text-[var(--text-muted)] mt-2">
+                                تحت إدارة وإشراف
+                            </p>
+                            <p className="text-sm font-bold text-gradient flex items-center gap-2">
+                                <span>🎓</span>
+                                جامعة برج العرب التكنولوجية
+                            </p>
+                        </div>
+
+                        {/* Copyright */}
+                        <p className="text-xs text-[var(--text-muted)] mt-2">
                             © {currentYear} UniVerse. جميع الحقوق محفوظة.
-                        </p>
-                        <p className="flex items-center gap-1">
-                            صُنع بـ
-                            <span className="text-[var(--aurora-danger)] animate-pulse">❤</span>
-                            في مصر
                         </p>
                     </div>
                 </div>
