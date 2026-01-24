@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Trash2 } from 'lucide-react';
 
 interface DeleteConfirmModalProps {
     isOpen: boolean;
@@ -40,8 +41,8 @@ export default function DeleteConfirmModal({
         <div className="modal-backdrop">
             <div className="card-elevated p-6 max-w-md w-full animate-fade-slide-up">
                 <div className="text-center mb-6">
-                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--aurora-danger-muted)] mb-4">
-                        <span className="text-2xl">🗑️</span>
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-500/10 mb-4 text-red-500">
+                        <Trash2 className="w-7 h-7" />
                     </div>
                     <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                         {title}

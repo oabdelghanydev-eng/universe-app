@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { AlertTriangle, Ban, AlertOctagon, Mail, FileText, X, Check, ClipboardList } from 'lucide-react';
 
 // ============================================
 // Types
@@ -24,7 +25,7 @@ export type ReportReason = 'inappropriate_content' | 'fraud' | 'spam' | 'other';
 interface ReasonOption {
     value: ReportReason;
     label: string;
-    icon: string;
+    icon: React.ReactNode;
 }
 
 // ============================================
@@ -32,10 +33,10 @@ interface ReasonOption {
 // ============================================
 
 const REASON_OPTIONS: ReasonOption[] = [
-    { value: 'inappropriate_content', label: 'محتوى غير لائق', icon: '🚫' },
-    { value: 'fraud', label: 'احتيال أو نصب', icon: '⚠️' },
-    { value: 'spam', label: 'إعلان مزعج (سبام)', icon: '📧' },
-    { value: 'other', label: 'سبب آخر', icon: '📋' },
+    { value: 'inappropriate_content', label: 'محتوى غير لائق', icon: <Ban className="w-5 h-5" /> },
+    { value: 'fraud', label: 'احتيال أو نصب', icon: <AlertOctagon className="w-5 h-5" /> },
+    { value: 'spam', label: 'إعلان مزعج (سبام)', icon: <Mail className="w-5 h-5" /> },
+    { value: 'other', label: 'سبب آخر', icon: <FileText className="w-5 h-5" /> },
 ];
 
 // ============================================
@@ -126,15 +127,16 @@ export default function ReportModal({
                 {/* Header */}
                 <div className="p-6 border-b border-[var(--glass-border)]">
                     <div className="flex items-center justify-between">
-                        <h2 id="report-modal-title" className="text-xl font-bold text-[var(--text-primary)]">
-                            🚨 الإبلاغ عن إعلان
+                        <h2 id="report-modal-title" className="text-xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+                            <AlertTriangle className="w-6 h-6 text-red-500" />
+                            الإبلاغ عن إعلان
                         </h2>
                         <button
                             onClick={onClose}
                             className="w-8 h-8 rounded-lg flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--text-primary)] transition-colors"
                             aria-label="إغلاق"
                         >
-                            ✕
+                            <X className="w-5 h-5" />
                         </button>
                     </div>
                     <p className="text-sm text-[var(--text-muted)] mt-2 line-clamp-1">
@@ -155,14 +157,16 @@ export default function ReportModal({
                                     key={option.value}
                                     onClick={() => setSelectedReason(option.value)}
                                     className={`w-full flex items-center gap-3 p-3.5 rounded-xl transition-all ${selectedReason === option.value
-                                            ? 'bg-[var(--aurora-danger-muted)] border border-[var(--aurora-danger)] text-[var(--aurora-danger)]'
-                                            : 'card hover:bg-[var(--glass-bg-elevated)] text-[var(--text-primary)]'
+                                        ? 'bg-[var(--aurora-danger-muted)] border border-[var(--aurora-danger)] text-[var(--aurora-danger)]'
+                                        : 'card hover:bg-[var(--glass-bg-elevated)] text-[var(--text-primary)]'
                                         }`}
                                 >
                                     <span className="text-xl">{option.icon}</span>
                                     <span className="font-medium">{option.label}</span>
                                     {selectedReason === option.value && (
-                                        <span className="mr-auto text-[var(--aurora-danger)]">✓</span>
+                                        <span className="mr-auto text-[var(--aurora-danger)]">
+                                            <Check className="w-5 h-5" />
+                                        </span>
                                     )}
                                 </button>
                             ))}
@@ -198,11 +202,11 @@ export default function ReportModal({
                     {/* Info */}
                     <div className="card p-4 rounded-xl space-y-2">
                         <p className="text-xs text-[var(--text-muted)] flex items-center gap-2">
-                            <span>📋</span>
+                            <ClipboardList className="w-4 h-4" />
                             سيتم مراجعة البلاغ من قبل الإدارة.
                         </p>
                         <p className="text-xs text-[var(--text-muted)] flex items-center gap-2">
-                            <span>⚠️</span>
+                            <AlertTriangle className="w-4 h-4" />
                             البلاغات الكاذبة قد تؤدي لحظر حسابك.
                         </p>
                     </div>
@@ -228,7 +232,10 @@ export default function ReportModal({
                                 جاري الإرسال...
                             </span>
                         ) : (
-                            '🚨 إرسال البلاغ'
+                            <span className="flex items-center justify-center gap-2">
+                                <AlertTriangle className="w-4 h-4" />
+                                إرسال البلاغ
+                            </span>
                         )}
                     </button>
                 </div>

@@ -8,6 +8,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
 import { logoutUser, checkRegistrationStatus } from '@/actions/auth';
 import Logo from '@/components/ui/Logo';
+import { Plus, User, CheckCircle2, LayoutGrid, LogOut, ChevronDown } from 'lucide-react';
 
 interface UserState {
     isLoggedIn: boolean;
@@ -98,10 +99,10 @@ export default function Header() {
                                 {/* New Listing Button */}
                                 <Link
                                     href="/listing/new"
-                                    className="btn btn-primary btn-sm"
+                                    className="btn btn-primary btn-sm flex items-center gap-1.5"
                                 >
-                                    <span className="hidden sm:inline">+ انشر إعلان</span>
-                                    <span className="sm:hidden">+</span>
+                                    <Plus className="w-4 h-4" />
+                                    <span className="hidden sm:inline">انشر إعلان</span>
                                 </Link>
 
                                 {/* User Menu */}
@@ -119,18 +120,11 @@ export default function Header() {
                                                 className="w-8 h-8 rounded-lg object-cover ring-2 ring-[var(--glass-border-strong)]"
                                             />
                                         ) : (
-                                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-nebula-500 to-stellar-500 flex items-center justify-center text-white font-bold text-sm">
-                                                {user.fullName?.charAt(0) || '👤'}
+                                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-nebula-500 to-stellar-500 flex items-center justify-center text-white">
+                                                <User className="w-4 h-4" />
                                             </div>
                                         )}
-                                        <svg
-                                            className={`w-4 h-4 text-[var(--text-muted)] transition-transform duration-200 ${menuOpen ? 'rotate-180' : ''}`}
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                        </svg>
+                                        <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-200 ${menuOpen ? 'rotate-180' : ''}`} />
                                     </button>
 
                                     {/* Dropdown Menu */}
@@ -141,8 +135,8 @@ export default function Header() {
                                                 <p className="font-semibold text-[var(--text-primary)] truncate">
                                                     {user.fullName}
                                                 </p>
-                                                <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                                                    طالب موثّق ✓
+                                                <p className="text-xs text-[var(--text-muted)] mt-0.5 flex items-center gap-1">
+                                                    طالب موثّق <CheckCircle2 className="w-3 h-3 text-cyan-400" />
                                                 </p>
                                             </div>
 
@@ -153,7 +147,7 @@ export default function Header() {
                                                     className="flex items-center gap-3 px-4 py-2.5 text-[var(--text-secondary)] hover:bg-[var(--glass-bg)] hover:text-[var(--text-primary)] transition-colors"
                                                     onClick={() => setMenuOpen(false)}
                                                 >
-                                                    <span className="text-lg">📋</span>
+                                                    <LayoutGrid className="w-4 h-4" />
                                                     إعلاناتي
                                                 </Link>
 
@@ -161,7 +155,7 @@ export default function Header() {
                                                     onClick={handleLogout}
                                                     className="w-full flex items-center gap-3 px-4 py-2.5 text-[var(--aurora-danger)] hover:bg-[var(--aurora-danger-muted)] transition-colors"
                                                 >
-                                                    <span className="text-lg">🚪</span>
+                                                    <LogOut className="w-4 h-4" />
                                                     تسجيل خروج
                                                 </button>
                                             </div>
@@ -198,4 +192,3 @@ export default function Header() {
         </header>
     );
 }
-
