@@ -62,3 +62,5 @@ studentnameWithID.csv
 !tsconfig.json
 
 .trash
+.env.prod
+.env.production.check
