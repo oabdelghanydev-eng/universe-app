@@ -232,7 +232,7 @@ export default function ListingForm({
                         placeholder="0"
                         min="0"
                         className={`input pl-14 ${errors.price ? 'input-error' : ''}`}
-                        dir="ltr"
+                        dir="rtl"
                     />
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-sm">
                         ج.م
@@ -352,7 +352,7 @@ export default function ListingForm({
                         onChange={(e) => setPhoneNumber(e.target.value)}
                         placeholder="01012345678"
                         className={`input ${errors.phoneNumber ? 'input-error' : ''}`}
-                        dir="ltr"
+                        dir="rtl"
                     />
                     {errors.phoneNumber && (
                         <span className="text-[var(--aurora-danger)] text-sm mt-1 block">{errors.phoneNumber}</span>

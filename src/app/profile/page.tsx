@@ -217,7 +217,7 @@ function ProfileListingCard({
     isDeleted?: boolean;
 }) {
     const createdDate = listing.createdAt
-        ? new Date(listing.createdAt).toLocaleDateString('ar-EG', {
+        ? new Date(listing.createdAt).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'short',
             day: 'numeric',
@@ -269,7 +269,7 @@ function ProfileListingCard({
                         </h3>
                         {listing.price && (
                             <p className="text-[var(--nebula-400)] font-medium text-sm">
-                                {listing.price.toLocaleString('ar-EG')} ج.م
+                                {listing.price.toLocaleString('en-US')} ج.م
                             </p>
                         )}
                     </div>

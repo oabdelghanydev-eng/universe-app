@@ -218,67 +218,70 @@ export default function ListingsFeed({
 
     return (
         <div className="space-y-6">
-            {/* Search Bar */}
-            <div className="relative group">
-                <input
-                    ref={inputRef}
-                    type="text"
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="ابحث عن منتجات أو خدمات..."
-                    className="input w-full py-3.5 pr-12 pl-12 rounded-xl"
-                    dir="rtl"
-                    aria-label="البحث في الإعلانات"
-                />
+            {/* Search & Filter Section */}
+            <div className="card p-4 rounded-2xl space-y-4">
+                {/* Search Bar */}
+                <div className="relative group">
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="ابحث عن منتجات أو خدمات..."
+                        className="w-full py-3 px-12 rounded-xl bg-[var(--space-800)] border border-[var(--glass-border)] text-white placeholder:text-[var(--text-muted)] focus:text-white focus:outline-none focus:ring-2 focus:ring-[var(--nebula-500)] focus:border-transparent transition-all"
+                        dir="rtl"
+                        aria-label="البحث في الإعلانات"
+                    />
 
-                {/* Search Icon */}
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-xl pointer-events-none group-focus-within:text-[var(--nebula-400)] transition-colors">
-                    🔍
-                </span>
+                    {/* Search Icon */}
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-lg pointer-events-none group-focus-within:text-[var(--nebula-400)] transition-colors">
+                        🔍
+                    </span>
 
-                {/* Clear / Loading */}
-                <div className="absolute left-4 top-1/2 -translate-y-1/2">
-                    {isLoading && query ? (
-                        <LoadingSpinner size="sm" variant="primary" />
-                    ) : query ? (
-                        <button
-                            onClick={clearSearch}
-                            className="w-6 h-6 rounded-full bg-[var(--space-700)] text-[var(--text-muted)] hover:bg-[var(--space-600)] hover:text-[var(--text-primary)] transition-colors flex items-center justify-center text-sm"
-                            aria-label="مسح البحث"
-                        >
-                            ✕
-                        </button>
-                    ) : null}
+                    {/* Clear / Loading */}
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2">
+                        {isLoading && query ? (
+                            <LoadingSpinner size="sm" variant="primary" />
+                        ) : query ? (
+                            <button
+                                onClick={clearSearch}
+                                className="w-6 h-6 rounded-full bg-[var(--space-600)] text-[var(--text-muted)] hover:bg-[var(--space-500)] hover:text-[var(--text-primary)] transition-colors flex items-center justify-center text-sm"
+                                aria-label="مسح البحث"
+                            >
+                                ✕
+                            </button>
+                        ) : null}
+                    </div>
                 </div>
-            </div>
 
-            {/* Filter Chips */}
-            <div className="flex gap-2 flex-wrap" role="group" aria-label="تصفية حسب النوع">
-                {(Object.keys(FILTER_CONFIG) as TypeFilter[]).map((filter) => {
-                    const config = FILTER_CONFIG[filter];
-                    const isActive = typeFilter === filter;
+                {/* Filter Chips */}
+                <div className="flex items-center gap-3 justify-center" role="group" aria-label="تصفية حسب النوع">
+                    {(Object.keys(FILTER_CONFIG) as TypeFilter[]).map((filter) => {
+                        const config = FILTER_CONFIG[filter];
+                        const isActive = typeFilter === filter;
 
-                    return (
-                        <button
-                            key={filter}
-                            onClick={() => setTypeFilter(filter)}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 flex items-center gap-2 ${isActive
-                                ? 'bg-gradient-to-r from-nebula-500 to-nebula-600 text-white shadow-nebula'
-                                : 'glass hover:bg-[var(--glass-bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                                }`}
-                            aria-pressed={isActive}
-                        >
-                            <span>{config.icon}</span>
-                            {config.label}
-                        </button>
-                    );
-                })}
+                        return (
+                            <button
+                                key={filter}
+                                onClick={() => setTypeFilter(filter)}
+                                className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${isActive
+                                    ? 'bg-gradient-to-r from-nebula-500 to-nebula-600 text-white shadow-lg shadow-nebula-500/30 scale-105'
+                                    : 'bg-[var(--space-800)] hover:bg-[var(--space-700)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border)]'
+                                    }`}
+                                aria-pressed={isActive}
+                            >
+                                <span className="text-base">{config.icon}</span>
+                                {config.label}
+                            </button>
+                        );
+                    })}
+                </div>
             </div>
 
             {/* Results Count */}
             {!isLoading && totalHits > 0 && (
                 <p className="text-sm text-[var(--text-muted)]">
-                    {totalHits.toLocaleString('ar-EG')} نتيجة
+                    {totalHits.toLocaleString('en-US')} نتيجة
                 </p>
             )}
 
@@ -364,7 +367,7 @@ export default function ListingsFeed({
             {!isLoading && !hasMore && hits.length > 0 && (
                 <div className="text-center text-[var(--text-muted)] py-4 text-sm">
                     <span className="inline-block w-12 h-px bg-[var(--glass-border)] mx-4 align-middle" />
-                    نهاية النتائج ({hits.length} من {totalHits.toLocaleString('ar-EG')})
+                    نهاية النتائج ({hits.length.toLocaleString('en-US')} من {totalHits.toLocaleString('en-US')})
                     <span className="inline-block w-12 h-px bg-[var(--glass-border)] mx-4 align-middle" />
                 </div>
             )}

@@ -21,14 +21,21 @@ function getAdminApp(): App {
         const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_KEY;
         if (serviceAccountJson) {
             try {
-                const serviceAccount = JSON.parse(serviceAccountJson);
+                let serviceAccount = JSON.parse(serviceAccountJson);
+
+                // Fix Private Key formatting issues (common in Vercel env vars)
+                if (serviceAccount.private_key) {
+                    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+                }
+
+
                 return initializeApp({
                     credential: cert(serviceAccount),
                     storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
                 });
             } catch (error) {
-                console.error('Error parsing FIREBASE_SERVICE_ACCOUNT_KEY:', error);
-                // Fallthrough to try file path if JSON parse fails
+                console.error('FIREBASE_SERVICE_ACCOUNT_KEY Parsing Error:', error);
+                // Continue to try other methods, but log this critical failure
             }
         }
 

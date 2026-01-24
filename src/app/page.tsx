@@ -5,6 +5,25 @@ import { adminDb } from '@/lib/firebase/admin';
 import ListingsFeed from '@/components/features/ListingsFeed';
 import { MeteorShower } from '@/components/effects/CosmicBackground';
 import Logo from '@/components/ui/Logo';
+import {
+    Shield,
+    ShieldCheck,
+    Smartphone,
+    Search,
+    Sparkles,
+    User,
+    ClipboardList,
+    UserPlus,
+    Eye,
+    MessageCircle,
+    Rocket,
+    GraduationCap,
+    Clock,
+    Coins,
+    Infinity,
+    Hand,
+    CheckCircle2
+} from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -64,8 +83,9 @@ function LandingPage() {
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 max-w-3xl mx-auto leading-tight">
-                            مجتمعك الجامعي، في مكان واحد 🚀
+                        <p className="text-xl md:text-3xl font-bold text-[var(--text-primary)] mb-4 max-w-3xl mx-auto leading-tight flex items-center justify-center gap-3">
+                            مجتمعك الجامعي، في مكان واحد
+                            <Rocket className="w-8 h-8 text-[var(--nebula-400)] animate-gentle-float" />
                         </p>
                         <p className="text-lg text-[var(--text-secondary)] mb-10 max-w-xl mx-auto leading-relaxed">
                             بيع كتبك، اشتري اللي ناقصك، وقدم خدماتك لزمايلك في الجامعة.
@@ -115,19 +135,19 @@ function LandingPage() {
                     {/* Features Grid */}
                     <div className="grid md:grid-cols-3 gap-6">
                         <FeatureCard
-                            icon="🔐"
+                            icon={<ShieldCheck className="w-7 h-7 text-white" />}
                             title="أمان مضمون"
                             description="تسجيل عبر Google OAuth والتحقق من هوية الطالب قبل النشر"
                             gradient="from-nebula-500 to-nebula-600"
                         />
                         <FeatureCard
-                            icon="📱"
+                            icon={<Smartphone className="w-7 h-7 text-white" />}
                             title="تواصل مباشر"
                             description="تواصل فوري عبر واتساب أو مكالمة هاتفية مع البائع"
                             gradient="from-stellar-500 to-stellar-600"
                         />
                         <FeatureCard
-                            icon="🔍"
+                            icon={<Search className="w-7 h-7 text-white" />}
                             title="بحث سريع"
                             description="ابحث عن أي منتج أو خدمة بسهولة وفلتر حسب النوع"
                             gradient="from-aurora-info to-nebula-500"
@@ -213,11 +233,12 @@ function AuthenticatedHome({ userName }: { userName: string }) {
             {/* Welcome Section */}
             <div className="mb-8 animate-fade-slide-up">
                 <div className="flex items-center gap-2 mb-2">
-                    <span className="text-2xl">👋</span>
+                    <Hand className="w-6 h-6 text-[var(--nebula-400)]" />
                     <p className="text-[var(--text-muted)] font-medium">{greeting}</p>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)]">
-                    منور يا {firstName} 🌟
+                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] flex items-center gap-2">
+                    منور يا {firstName}
+                    <Sparkles className="w-6 h-6 text-[var(--accent-400)]" />
                 </h1>
             </div>
 
@@ -227,14 +248,14 @@ function AuthenticatedHome({ userName }: { userName: string }) {
                     href="/listing/new"
                     title="انشر إعلان جديد"
                     description="بيع كتب، أدوات، أو اعرض خدماتك لزمايلك"
-                    icon="✨"
+                    icon={<Sparkles className="w-6 h-6" />}
                     variant="primary"
                 />
                 <ActionCard
                     href="/profile"
                     title="إعلاناتي وملفي"
                     description="تابع حالة إعلاناتك، الرسايل، وتعديل بياناتك"
-                    icon="👤"
+                    icon={<User className="w-6 h-6" />}
                     variant="secondary"
                 />
             </div>
@@ -260,7 +281,7 @@ function CompleteRegistrationPrompt() {
         <div className="min-h-[70vh] flex items-center justify-center px-4">
             <div className="text-center max-w-md animate-fade-slide-up">
                 <div className="inline-flex items-center justify-center w-24 h-24 rounded-2xl glass-elevated mb-8 animate-gentle-float">
-                    <span className="text-5xl">📋</span>
+                    <ClipboardList className="w-12 h-12 text-[var(--nebula-400)]" />
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-4">
                     أكمل تسجيلك
@@ -288,7 +309,7 @@ function FeatureCard({
     description,
     gradient
 }: {
-    icon: string;
+    icon: React.ReactNode;
     title: string;
     description: string;
     gradient: string;
@@ -297,7 +318,7 @@ function FeatureCard({
         <div className="card card-interactive p-6 rounded-2xl group">
             {/* Icon */}
             <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                <span className="text-2xl">{icon}</span>
+                {icon}
             </div>
 
             {/* Content */}
@@ -359,7 +380,7 @@ function ActionCard({
     href: string;
     title: string;
     description: string;
-    icon: string;
+    icon: React.ReactNode;
     variant: 'primary' | 'secondary'
 }) {
     const isPrimary = variant === 'primary';
@@ -377,7 +398,7 @@ function ActionCard({
                 {icon}
             </div>
             <div>
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-nebula-400 group-hover:to-stellar-400 transition-colors">
+                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 group-hover:text-[var(--nebula-400)] transition-colors">
                     {title}
                 </h3>
                 <p className="text-[var(--text-secondary)] text-sm leading-relaxed">

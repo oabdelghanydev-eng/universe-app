@@ -5,14 +5,22 @@
  */
 
 import { z } from 'zod';
-import DOMPurify from 'isomorphic-dompurify';
+import xss from 'xss';
 
 /**
- * Sanitize string to prevent XSS
- * Strips all HTML tags, keeping only text content
+ * Sanitize string to prevent XSS attacks
+ * Uses the battle-tested 'xss' library for robust protection
+ * 
+ * - Strips all HTML tags (whitelisted: none)
+ * - Removes dangerous attributes and protocols
+ * - Vercel Serverless compatible (no jsdom dependency)
  */
 function sanitize(input: string): string {
-    return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [] });
+    return xss(input.trim(), {
+        whiteList: {},           // No HTML tags allowed
+        stripIgnoreTag: true,    // Remove all non-whitelisted tags
+        stripIgnoreTagBody: ['script', 'style'], // Remove script/style content entirely
+    });
 }
 
 // ============================================

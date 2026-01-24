@@ -48,7 +48,7 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
     const [activeImage, setActiveImage] = useState(0);
 
     const createdDate = listing.createdAt
-        ? new Date(listing.createdAt).toLocaleDateString('ar-EG', {
+        ? new Date(listing.createdAt).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
@@ -171,8 +171,8 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                                             key={idx}
                                             onClick={() => setActiveImage(idx)}
                                             className={`aspect-square bg-[var(--space-800)] rounded-lg overflow-hidden transition-all duration-200 ${activeImage === idx
-                                                    ? 'ring-2 ring-[var(--nebula-500)] ring-offset-2 ring-offset-[var(--space-950)]'
-                                                    : 'opacity-60 hover:opacity-100'
+                                                ? 'ring-2 ring-[var(--nebula-500)] ring-offset-2 ring-offset-[var(--space-950)]'
+                                                : 'opacity-60 hover:opacity-100'
                                                 }`}
                                         >
                                             <img
@@ -221,7 +221,7 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                     {/* Price */}
                     {listing.price && (
                         <div className="text-3xl md:text-4xl font-bold text-gradient">
-                            {listing.price.toLocaleString('ar-EG')} ج.م
+                            {listing.price.toLocaleString('en-US')} ج.م
                         </div>
                     )}
 
