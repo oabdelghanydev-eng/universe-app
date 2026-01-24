@@ -544,7 +544,7 @@ function StepCard({ number, title, description }: { number: string; title: strin
 }
 
 // ============================================
-// Action Card Component (New)
+// Action Card Component
 // ============================================
 function ActionCard({
     href,
@@ -565,19 +565,24 @@ function ActionCard({
             href={href}
             className={`flex items-start gap-4 p-6 rounded-2xl border transition-all duration-300 group
                 ${isPrimary
-                    ? 'bg-gradient-to-br from-nebula-500/10 to-nebula-600/5 border-nebula-500/20 hover:border-nebula-500/50 hover:shadow-nebula'
-                    : 'glass border-[var(--glass-border)] hover:border-[var(--text-muted)] hover:bg-[var(--glass-bg-elevated)]'
+                    ? 'bg-gradient-to-br from-cyan-500/10 via-violet-500/5 to-transparent border-cyan-500/30 hover:border-cyan-400/60 hover:shadow-lg hover:shadow-cyan-500/20'
+                    : 'bg-gradient-to-br from-rose-500/10 via-slate-800/50 to-transparent border-slate-700/50 hover:border-rose-400/40 hover:shadow-lg hover:shadow-rose-500/10'
                 }`}
         >
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl shadow-sm transition-transform group-hover:scale-110
-                ${isPrimary ? 'bg-nebula-500 text-white' : 'bg-[var(--surface-elevated)] text-[var(--text-primary)]'}`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110
+                ${isPrimary
+                    ? 'bg-gradient-to-br from-cyan-500 to-violet-600 text-white'
+                    : 'bg-gradient-to-br from-rose-500 to-orange-500 text-white'}`}>
                 {icon}
             </div>
             <div>
-                <h3 className="text-lg font-bold text-[var(--text-primary)] mb-1 group-hover:text-[var(--nebula-400)] transition-colors">
+                <h3 className={`text-lg font-bold mb-1 transition-colors
+                    ${isPrimary
+                        ? 'text-slate-100 group-hover:text-cyan-400'
+                        : 'text-slate-100 group-hover:text-rose-400'}`}>
                     {title}
                 </h3>
-                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                <p className="text-slate-400 text-sm leading-relaxed">
                     {description}
                 </p>
             </div>

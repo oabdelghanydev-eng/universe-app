@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { algoliaClient, searchIndexName } from '@/lib/algolia/client';
 import ListingCard, { ListingCardSkeleton } from './ListingCard';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Search, Package, Wrench, LayoutGrid, X, SearchX, Inbox } from 'lucide-react';
 
 // ============================================
 // Types
@@ -40,10 +41,10 @@ type TypeFilter = 'product' | 'service' | 'all';
 const HITS_PER_PAGE = 12;
 const DEBOUNCE_MS = 300;
 
-const FILTER_CONFIG: Record<TypeFilter, { label: string; icon: string }> = {
-    all: { label: 'الكل', icon: '🏠' },
-    product: { label: 'منتجات', icon: '📦' },
-    service: { label: 'خدمات', icon: '🛠️' },
+const FILTER_CONFIG: Record<TypeFilter, { label: string; Icon: React.ComponentType<{ className?: string }>; color: string }> = {
+    all: { label: 'الكل', Icon: LayoutGrid, color: 'text-slate-400' },
+    product: { label: 'منتجات', Icon: Package, color: 'text-cyan-400' },
+    service: { label: 'خدمات', Icon: Wrench, color: 'text-rose-400' },
 };
 
 // ============================================
@@ -234,8 +235,8 @@ export default function ListingsFeed({
                     />
 
                     {/* Search Icon */}
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)] text-lg pointer-events-none group-focus-within:text-[var(--nebula-400)] transition-colors">
-                        🔍
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none group-focus-within:text-cyan-400 transition-colors">
+                        <Search className="w-5 h-5" />
                     </span>
 
                     {/* Clear / Loading */}
@@ -245,10 +246,10 @@ export default function ListingsFeed({
                         ) : query ? (
                             <button
                                 onClick={clearSearch}
-                                className="w-6 h-6 rounded-full bg-[var(--space-600)] text-[var(--text-muted)] hover:bg-[var(--space-500)] hover:text-[var(--text-primary)] transition-colors flex items-center justify-center text-sm"
+                                className="w-6 h-6 rounded-full bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white transition-colors flex items-center justify-center"
                                 aria-label="مسح البحث"
                             >
-                                ✕
+                                <X className="w-3.5 h-3.5" />
                             </button>
                         ) : null}
                     </div>
@@ -265,12 +266,12 @@ export default function ListingsFeed({
                                 key={filter}
                                 onClick={() => setTypeFilter(filter)}
                                 className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${isActive
-                                    ? 'bg-gradient-to-r from-nebula-500 to-nebula-600 text-white shadow-lg shadow-nebula-500/30 scale-105'
-                                    : 'bg-[var(--space-800)] hover:bg-[var(--space-700)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--glass-border)]'
+                                    ? 'bg-gradient-to-r from-cyan-500 to-violet-600 text-white shadow-lg shadow-cyan-500/30 scale-105'
+                                    : 'bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white border border-slate-700/50'
                                     }`}
                                 aria-pressed={isActive}
                             >
-                                <span className="text-base">{config.icon}</span>
+                                <config.Icon className={`w-4 h-4 ${isActive ? 'text-white' : config.color}`} />
                                 {config.label}
                             </button>
                         );
@@ -310,10 +311,12 @@ export default function ListingsFeed({
             {/* Empty State */}
             {!isLoading && !error && hits.length === 0 && (
                 <div className="card p-12 rounded-2xl text-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl glass-elevated mb-6 animate-gentle-float">
-                        <span className="text-4xl">
-                            {debouncedQuery ? '🔍' : '📭'}
-                        </span>
+                    <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-slate-800/50 border border-slate-700/50 mb-6">
+                        {debouncedQuery ? (
+                            <SearchX className="w-10 h-10 text-slate-500" />
+                        ) : (
+                            <Inbox className="w-10 h-10 text-slate-500" />
+                        )}
                     </div>
                     <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                         {debouncedQuery ? 'لا توجد نتائج' : 'لا توجد إعلانات بعد'}

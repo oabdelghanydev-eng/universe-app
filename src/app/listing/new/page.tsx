@@ -7,6 +7,7 @@ import { createListing } from '@/actions/listings';
 import { checkRegistrationStatus } from '@/actions/auth';
 import type { ListingInput } from '@/types';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Upload, Lightbulb, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function NewListingPage() {
     const router = useRouter();
@@ -95,18 +96,22 @@ export default function NewListingPage() {
         <div className="container mx-auto px-4 py-8 max-w-2xl animate-fade-slide-up">
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2">
-                    📤 نشر إعلان جديد
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-100 mb-2 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-violet-600 flex items-center justify-center">
+                        <Upload className="w-5 h-5 text-white" />
+                    </div>
+                    نشر إعلان جديد
                 </h1>
-                <p className="text-[var(--text-secondary)]">
+                <p className="text-slate-400">
                     أضف تفاصيل إعلانك وسيتم نشره فوراً
                 </p>
             </div>
 
             {/* Error Message */}
             {error && (
-                <div className="card p-4 mb-6 border border-[var(--aurora-danger)]/30 bg-[var(--aurora-danger-muted)] rounded-xl">
-                    <p className="text-[var(--aurora-danger)]">{error}</p>
+                <div className="p-4 mb-6 border border-red-500/30 bg-red-500/10 rounded-xl flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                    <p className="text-red-400">{error}</p>
                 </div>
             )}
 
@@ -120,26 +125,26 @@ export default function NewListingPage() {
             </div>
 
             {/* Tips */}
-            <div className="card p-6 rounded-xl border-r-4 border-r-[var(--nebula-500)]">
-                <h3 className="font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-                    <span>💡</span>
+            <div className="bg-slate-900/50 p-6 rounded-xl border-r-4 border-r-amber-500">
+                <h3 className="font-bold text-slate-100 mb-4 flex items-center gap-2">
+                    <Lightbulb className="w-5 h-5 text-amber-400" />
                     نصائح لإعلان ناجح
                 </h3>
-                <ul className="space-y-3 text-[var(--text-secondary)] text-sm">
+                <ul className="space-y-3 text-slate-400 text-sm">
                     <li className="flex items-start gap-2">
-                        <span className="text-[var(--nebula-400)]">•</span>
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
                         اكتب عنواناً واضحاً ومختصراً يصف المنتج
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-[var(--nebula-400)]">•</span>
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
                         أضف وصفاً تفصيلياً مع ذكر حالة المنتج
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-[var(--nebula-400)]">•</span>
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
                         أضف صوراً واضحة من زوايا مختلفة
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-[var(--nebula-400)]">•</span>
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0" />
                         حدد سعراً مناسباً للسوق
                     </li>
                 </ul>

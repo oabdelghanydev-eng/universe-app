@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useFirstImageUrl } from '@/hooks/useImageUrls';
+import { Package, Wrench, Camera } from 'lucide-react';
 
 // ============================================
 // Types
@@ -29,12 +30,16 @@ interface ListingCardProps {
 const TYPE_STYLES = {
     product: {
         gradient: 'from-nebula-500 to-nebula-600',
-        icon: '📦',
+        bgColor: 'bg-nebula-500/10',
+        iconColor: 'text-nebula-400',
+        Icon: Package,
         label: 'منتج',
     },
     service: {
         gradient: 'from-stellar-500 to-stellar-600',
-        icon: '🛠️',
+        bgColor: 'bg-stellar-500/10',
+        iconColor: 'text-stellar-400',
+        Icon: Wrench,
         label: 'خدمة',
     },
 } as const;
@@ -108,9 +113,7 @@ export default function ListingCard({
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-5xl text-[var(--text-muted)] opacity-50">
-                            {typeConfig.icon}
-                        </span>
+                        <typeConfig.Icon className="w-12 h-12 text-[var(--text-muted)] opacity-50" />
                     </div>
                 )}
 
@@ -119,8 +122,9 @@ export default function ListingCard({
 
                 {/* Image Count Badge */}
                 {totalImages > 1 && (
-                    <span className="absolute bottom-3 left-3 px-2 py-1 glass rounded-md text-xs text-white font-medium">
-                        📷 {totalImages.toLocaleString('en-US')}
+                    <span className="absolute bottom-3 left-3 px-2 py-1 glass rounded-md text-xs text-white font-medium flex items-center gap-1">
+                        <Camera className="w-3 h-3" />
+                        {totalImages.toLocaleString('en-US')}
                     </span>
                 )}
             </div>

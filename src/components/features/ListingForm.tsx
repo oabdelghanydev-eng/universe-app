@@ -4,6 +4,7 @@
 import { useState, useRef } from 'react';
 import type { ListingType, ContactMethod, ListingInput } from '@/types';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { Package, Wrench, Camera, MessageCircle, Phone, Save, Upload, Check, X } from 'lucide-react';
 
 interface ListingFormProps {
     onSubmit: (data: ListingInput, images: File[]) => Promise<void>;
@@ -156,16 +157,16 @@ export default function ListingForm({
                     <TypeButton
                         selected={type === 'product'}
                         onClick={() => setType('product')}
-                        icon="📦"
+                        icon={<Package className="w-6 h-6" />}
                         label="منتج"
-                        gradient="from-nebula-500 to-nebula-600"
+                        colorClass="text-cyan-400"
                     />
                     <TypeButton
                         selected={type === 'service'}
                         onClick={() => setType('service')}
-                        icon="🛠️"
+                        icon={<Wrench className="w-6 h-6" />}
                         label="خدمة"
-                        gradient="from-stellar-500 to-stellar-600"
+                        colorClass="text-violet-400"
                     />
                 </div>
             </div>
@@ -261,9 +262,9 @@ export default function ListingForm({
                             <button
                                 type="button"
                                 onClick={() => removeExistingImage(index)}
-                                className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--aurora-danger)] text-white rounded-full flex items-center justify-center text-sm opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-600"
                             >
-                                ×
+                                <X className="w-3.5 h-3.5" />
                             </button>
                         </div>
                     ))}
@@ -282,9 +283,9 @@ export default function ListingForm({
                             <button
                                 type="button"
                                 onClick={() => removeNewImage(index)}
-                                className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--aurora-danger)] text-white rounded-full flex items-center justify-center text-sm opacity-0 group-hover:opacity-100 transition-opacity shadow-lg"
+                                className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg hover:bg-red-600"
                             >
-                                ×
+                                <X className="w-3.5 h-3.5" />
                             </button>
                         </div>
                     ))}
@@ -294,9 +295,9 @@ export default function ListingForm({
                         <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="aspect-square border-2 border-dashed border-[var(--glass-border-strong)] rounded-xl flex flex-col items-center justify-center text-[var(--text-muted)] hover:border-[var(--nebula-500)] hover:text-[var(--nebula-400)] transition-colors"
+                            className="aspect-square border-2 border-dashed border-slate-600 rounded-xl flex flex-col items-center justify-center text-slate-400 hover:border-cyan-500 hover:text-cyan-400 transition-colors group"
                         >
-                            <span className="text-2xl mb-1">📷</span>
+                            <Camera className="w-6 h-6 mb-1 group-hover:scale-110 transition-transform" />
                             <span className="text-xs">أضف صورة</span>
                         </button>
                     )}
@@ -325,14 +326,14 @@ export default function ListingForm({
                     <ContactButton
                         selected={contactMethod === 'whatsapp'}
                         onClick={() => setContactMethod('whatsapp')}
-                        icon="💬"
+                        icon={<MessageCircle className="w-6 h-6" />}
                         label="واتساب"
                         color="success"
                     />
                     <ContactButton
                         selected={contactMethod === 'call'}
                         onClick={() => setContactMethod('call')}
-                        icon="📞"
+                        icon={<Phone className="w-6 h-6" />}
                         label="مكالمة"
                         color="info"
                     />
@@ -375,7 +376,10 @@ export default function ListingForm({
                         جاري {isEdit ? 'التحديث' : 'النشر'}...
                     </span>
                 ) : (
-                    isEdit ? '💾 حفظ التعديلات' : '📤 نشر الإعلان'
+                    <span className="flex items-center justify-center gap-2">
+                        {isEdit ? <Save className="w-5 h-5" /> : <Upload className="w-5 h-5" />}
+                        {isEdit ? 'حفظ التعديلات' : 'نشر الإعلان'}
+                    </span>
                 )}
             </button>
         </form>
