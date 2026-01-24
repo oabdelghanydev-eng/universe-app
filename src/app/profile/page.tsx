@@ -7,6 +7,7 @@ import { getUserListings, deleteListing } from '@/actions/listings';
 import { checkRegistrationStatus } from '@/actions/auth';
 import type { Listing } from '@/types';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { User, LayoutGrid, Trash2, Archive, Package, Wrench, Eye, Edit, Plus } from 'lucide-react';
 
 export default function ProfilePage() {
     const router = useRouter();
@@ -76,8 +77,9 @@ export default function ProfilePage() {
         <div className="container mx-auto px-4 py-8 max-w-4xl animate-fade-slide-up">
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2">
-                    👤 إعلاناتي
+                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2 flex items-center gap-3">
+                    <User className="w-8 h-8 text-cyan-400" />
+                    إعلاناتي
                 </h1>
                 <p className="text-[var(--text-secondary)]">
                     مرحباً {userName.split(' ')[0]}، هنا يمكنك إدارة إعلاناتك
@@ -110,10 +112,10 @@ export default function ProfilePage() {
             {/* New Listing Button */}
             <Link
                 href="/listing/new"
-                className="btn btn-primary w-full py-3.5 mb-8 flex items-center justify-center gap-2"
+                className="btn btn-primary w-full py-3.5 mb-8 flex items-center justify-center gap-2 group"
             >
-                <span className="text-xl">+</span>
-                انشر إعلان جديد
+                <Plus className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <span className="text-lg font-bold">انشر إعلان جديد</span>
             </Link>
 
             {/* Active Listings */}
@@ -124,8 +126,8 @@ export default function ProfilePage() {
 
                 {activeListings.length === 0 ? (
                     <div className="card p-10 rounded-2xl text-center">
-                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl glass-elevated mb-4 animate-gentle-float">
-                            <span className="text-3xl">📭</span>
+                        <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl glass-elevated mb-4 animate-gentle-float text-slate-400">
+                            <LayoutGrid className="w-8 h-8" />
                         </div>
                         <h3 className="font-semibold text-[var(--text-primary)] mb-2">
                             لا توجد إعلانات نشطة
@@ -173,8 +175,8 @@ export default function ProfilePage() {
                 <div className="modal-backdrop">
                     <div className="card-elevated p-6 rounded-2xl max-w-md w-full animate-fade-slide-up">
                         <div className="text-center mb-6">
-                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--aurora-danger-muted)] mb-4">
-                                <span className="text-2xl">🗑️</span>
+                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-500/10 mb-4 text-red-500">
+                                <Trash2 className="w-7 h-7" />
                             </div>
                             <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                                 تأكيد الحذف
@@ -243,10 +245,10 @@ function ProfileListingCard({
                             className="w-full h-full object-cover"
                         />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-3xl text-[var(--text-muted)] opacity-50">
-                                {listing.type === 'product' ? '📦' : '🛠️'}
-                            </span>
+                        <div className="w-full h-full flex items-center justify-center bg-slate-800">
+                            <div className="text-slate-600">
+                                {listing.type === 'product' ? <Package className="w-8 h-8" /> : <Wrench className="w-8 h-8" />}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -286,21 +288,21 @@ function ProfileListingCard({
                             className="flex-1 px-4 flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--text-primary)] transition-colors"
                             title="عرض"
                         >
-                            👁️
+                            <Eye className="w-5 h-5" />
                         </Link>
                         <Link
                             href={`/listing/${listing.id}/edit`}
                             className="flex-1 px-4 flex items-center justify-center text-[var(--text-muted)] hover:bg-[var(--glass-bg)] hover:text-[var(--text-primary)] transition-colors border-t border-[var(--glass-border)]"
                             title="تعديل"
                         >
-                            ✏️
+                            <Edit className="w-5 h-5" />
                         </Link>
                         <button
                             onClick={onDelete}
                             className="flex-1 px-4 flex items-center justify-center text-[var(--aurora-danger)] hover:bg-[var(--aurora-danger-muted)] transition-colors border-t border-[var(--glass-border)]"
                             title="حذف"
                         >
-                            🗑️
+                            <Trash2 className="w-5 h-5" />
                         </button>
                     </div>
                 )}

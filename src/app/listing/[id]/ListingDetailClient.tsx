@@ -6,6 +6,18 @@ import Link from 'next/link';
 import { deleteListing } from '@/actions/listings';
 import { submitReport } from '@/actions/reports';
 import ReportModal, { type ReportReason } from '@/components/ui/ReportModal';
+import {
+    Package,
+    Wrench,
+    CheckCircle2,
+    User,
+    MessageCircle,
+    Phone,
+    Edit,
+    Trash2,
+    AlertTriangle,
+    Calendar
+} from 'lucide-react';
 
 interface SerializedListing {
     id: string;
@@ -68,8 +80,8 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
     const callLink = `tel:${listing.phoneNumber}`;
 
     const typeConfig = {
-        product: { gradient: 'from-nebula-500 to-nebula-600', icon: '📦', label: 'منتج' },
-        service: { gradient: 'from-stellar-500 to-stellar-600', icon: '🛠️', label: 'خدمة' },
+        product: { gradient: 'from-nebula-500 to-nebula-600', icon: <Package className="w-4 h-4" />, label: 'منتج' },
+        service: { gradient: 'from-stellar-500 to-stellar-600', icon: <Wrench className="w-4 h-4" />, label: 'خدمة' },
     };
 
     const config = typeConfig[listing.type];
@@ -144,8 +156,9 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
             )}
 
             {successMessage && (
-                <div className="card p-4 mb-6 border border-[var(--aurora-success)]/30 bg-[var(--aurora-success-muted)] rounded-xl">
-                    <p className="text-[var(--aurora-success)]">✅ {successMessage}</p>
+                <div className="card p-4 mb-6 border border-emerald-500/30 bg-emerald-500/10 rounded-xl flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    <p className="text-emerald-400">{successMessage}</p>
                 </div>
             )}
 
@@ -186,10 +199,13 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                             )}
                         </>
                     ) : (
-                        <div className="aspect-square bg-[var(--space-800)] rounded-2xl flex items-center justify-center card">
-                            <span className="text-7xl text-[var(--text-muted)] opacity-50">
-                                {config.icon}
-                            </span>
+                        <div className="aspect-square bg-slate-900 rounded-2xl flex items-center justify-center card">
+                            <div className="text-slate-700">
+                                {config.label === 'منتج' ?
+                                    <Package className="w-24 h-24 stroke-1" /> :
+                                    <Wrench className="w-24 h-24 stroke-1" />
+                                }
+                            </div>
                         </div>
                     )}
                 </div>
@@ -198,7 +214,7 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                 <div className="space-y-6">
                     {/* Type & Status Badges */}
                     <div className="flex items-center gap-2 flex-wrap">
-                        <span className={`px-3 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r ${config.gradient} text-white`}>
+                        <span className={`px-3 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r ${config.gradient} text-white flex items-center gap-1.5`}>
                             {config.icon} {config.label}
                         </span>
                         {listing.isDeleted && (
@@ -248,8 +264,8 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                                     className="w-14 h-14 rounded-xl object-cover ring-2 ring-[var(--glass-border)]"
                                 />
                             ) : (
-                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-nebula-500 to-stellar-500 flex items-center justify-center text-white font-bold text-xl">
-                                    {seller?.fullName?.charAt(0) || '👤'}
+                                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-nebula-500 to-stellar-500 flex items-center justify-center text-white">
+                                    <User className="w-7 h-7" />
                                 </div>
                             )}
                             <div>
@@ -271,16 +287,18 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                                     href={whatsappLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="btn btn-success w-full py-3.5 text-lg"
+                                    className="btn btn-success w-full py-3.5 text-lg flex items-center justify-center gap-2"
                                 >
-                                    💬 تواصل على واتساب
+                                    <MessageCircle className="w-5 h-5" />
+                                    تواصل على واتساب
                                 </a>
                             ) : (
                                 <a
                                     href={callLink}
-                                    className="w-full btn py-3.5 text-lg bg-gradient-to-r from-aurora-info to-nebula-500 text-white shadow-lg"
+                                    className="w-full btn py-3.5 text-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-lg flex items-center justify-center gap-2 hover:shadow-blue-500/25 transition-all"
                                 >
-                                    📞 اتصال مباشر
+                                    <Phone className="w-5 h-5" />
+                                    اتصال مباشر
                                 </a>
                             )}
                         </div>
@@ -291,16 +309,18 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                         <div className="flex gap-3 pt-4 border-t border-[var(--glass-border)]">
                             <Link
                                 href={`/listing/${listing.id}/edit`}
-                                className="flex-1 btn btn-secondary py-2.5 text-center"
+                                className="flex-1 btn btn-secondary py-2.5 text-center flex items-center justify-center gap-2"
                             >
-                                ✏️ تعديل
+                                <Edit className="w-4 h-4" />
+                                تعديل
                             </Link>
                             {!listing.isDeleted && (
                                 <button
                                     onClick={() => setShowDeleteModal(true)}
-                                    className="flex-1 btn btn-danger py-2.5"
+                                    className="flex-1 btn btn-danger py-2.5 flex items-center justify-center gap-2"
                                 >
-                                    🗑️ حذف
+                                    <Trash2 className="w-4 h-4" />
+                                    حذف
                                 </button>
                             )}
                         </div>
@@ -311,16 +331,18 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                         <div className="pt-4 border-t border-[var(--glass-border)]">
                             <button
                                 onClick={() => setShowReportModal(true)}
-                                className="w-full btn btn-ghost text-[var(--text-muted)] hover:text-[var(--aurora-danger)] py-2.5 text-sm"
+                                className="w-full btn btn-ghost text-slate-400 hover:text-red-400 py-2.5 text-sm flex items-center justify-center gap-2"
                             >
-                                🚨 الإبلاغ عن هذا الإعلان
+                                <AlertTriangle className="w-4 h-4" />
+                                الإبلاغ عن هذا الإعلان
                             </button>
                         </div>
                     )}
 
                     {/* Meta Info */}
-                    <div className="text-sm text-[var(--text-muted)] pt-4 border-t border-[var(--glass-border)]">
-                        📅 تم النشر في {createdDate}
+                    <div className="text-sm text-[var(--text-muted)] pt-4 border-t border-[var(--glass-border)] flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        تم النشر في {createdDate}
                     </div>
                 </div>
             </div>
@@ -330,8 +352,8 @@ export default function ListingDetailClient({ listing, seller, isOwner }: Listin
                 <div className="modal-backdrop">
                     <div className="card-elevated p-6 rounded-2xl max-w-md w-full animate-fade-slide-up">
                         <div className="text-center mb-6">
-                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--aurora-danger-muted)] mb-4">
-                                <span className="text-2xl">🗑️</span>
+                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-red-500/10 mb-4 text-red-500">
+                                <Trash2 className="w-7 h-7" />
                             </div>
                             <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
                                 تأكيد الحذف

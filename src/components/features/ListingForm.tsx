@@ -392,13 +392,13 @@ function TypeButton({
     onClick,
     icon,
     label,
-    gradient
+    colorClass
 }: {
     selected: boolean;
     onClick: () => void;
-    icon: string;
+    icon: React.ReactNode;
     label: string;
-    gradient: string;
+    colorClass?: string;
 }) {
     return (
         <button
@@ -409,13 +409,13 @@ function TypeButton({
                 : 'glass-unselected'
                 }`}
         >
-            <span className="text-2xl block mb-1">{icon}</span>
+            <div className={`text-2xl mb-1 flex justify-center ${selected ? colorClass : 'text-slate-400'}`}>{icon}</div>
             <span className={`font-medium ${selected ? 'text-[var(--nebula-300)]' : 'text-[var(--text-primary)]'}`}>
                 {label}
             </span>
             {selected && (
-                <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-[var(--nebula-500)] flex items-center justify-center text-xs text-white shadow-lg">
-                    ✓
+                <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-cyan-500 flex items-center justify-center text-xs text-white shadow-lg">
+                    <Check className="w-3 h-3" />
                 </span>
             )}
         </button>
@@ -432,7 +432,7 @@ function ContactButton({
 }: {
     selected: boolean;
     onClick: () => void;
-    icon: string;
+    icon: React.ReactNode;
     label: string;
     color: 'success' | 'info';
 }) {
@@ -466,7 +466,7 @@ function ContactButton({
                 boxShadow: `${colorConfig.shadow}, inset 0 1px 0 rgba(255,255,255,0.1)`,
             } : undefined}
         >
-            <span className="text-2xl block mb-1">{icon}</span>
+            <div className={`text-2xl mb-1 flex justify-center ${selected ? '' : 'text-slate-400'}`}>{icon}</div>
             <span
                 className="font-medium"
                 style={{ color: selected ? colorConfig.text : 'var(--text-primary)' }}
