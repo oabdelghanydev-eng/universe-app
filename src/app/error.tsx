@@ -3,6 +3,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { AlertTriangle, RefreshCcw, Home, Lightbulb, ChevronLeft } from 'lucide-react';
 
 interface ErrorProps {
     error: Error & { digest?: string };
@@ -20,10 +21,10 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
                 {/* Illustration */}
                 <div className="relative w-24 h-24 mx-auto mb-8">
                     {/* Outer glow */}
-                    <div className="absolute inset-0 rounded-full bg-[var(--aurora-danger)]/20 blur-xl animate-pulse" />
+                    <div className="absolute inset-0 rounded-full bg-red-500/20 blur-xl animate-pulse" />
                     {/* Icon container */}
-                    <div className="relative w-full h-full rounded-2xl glass-elevated flex items-center justify-center">
-                        <span className="text-5xl">⚠️</span>
+                    <div className="relative w-full h-full rounded-2xl glass-elevated flex items-center justify-center text-red-500">
+                        <AlertTriangle className="w-12 h-12" />
                     </div>
                 </div>
 
@@ -50,35 +51,37 @@ export default function ErrorPage({ error, reset }: ErrorProps) {
                 <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
                     <button
                         onClick={reset}
-                        className="btn btn-primary px-6 py-3"
+                        className="btn btn-primary px-6 py-3 flex items-center justify-center gap-2"
                     >
-                        🔄 إعادة المحاولة
+                        <RefreshCcw className="w-5 h-5" />
+                        إعادة المحاولة
                     </button>
                     <Link
                         href="/"
-                        className="btn btn-secondary px-6 py-3"
+                        className="btn btn-secondary px-6 py-3 flex items-center justify-center gap-2"
                     >
-                        🏠 العودة للرئيسية
+                        <Home className="w-5 h-5" />
+                        العودة للرئيسية
                     </Link>
                 </div>
 
                 {/* Tips */}
                 <div className="card p-6 rounded-xl text-right">
                     <p className="font-semibold text-[var(--text-primary)] mb-3 flex items-center gap-2">
-                        <span>💡</span>
+                        <Lightbulb className="w-5 h-5 text-amber-400" />
                         نصائح
                     </p>
                     <ul className="text-sm text-[var(--text-secondary)] space-y-2">
-                        <li className="flex items-start gap-2">
-                            <span className="text-[var(--nebula-400)]">•</span>
+                        <li className="flex items-center gap-2">
+                            <ChevronLeft className="w-3 h-3 text-[var(--nebula-400)]" />
                             جرب تحديث الصفحة
                         </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-[var(--nebula-400)]">•</span>
+                        <li className="flex items-center gap-2">
+                            <ChevronLeft className="w-3 h-3 text-[var(--nebula-400)]" />
                             تأكد من اتصالك بالإنترنت
                         </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-[var(--nebula-400)]">•</span>
+                        <li className="flex items-center gap-2">
+                            <ChevronLeft className="w-3 h-3 text-[var(--nebula-400)]" />
                             إذا استمرت المشكلة، تواصل معنا
                         </li>
                     </ul>

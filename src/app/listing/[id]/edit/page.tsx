@@ -8,6 +8,8 @@ import { getListing, updateListing, deleteListing } from '@/actions/listings';
 import { checkRegistrationStatus } from '@/actions/auth';
 import type { ListingInput, Listing } from '@/types';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import DeleteConfirmModal from '@/components/ui/DeleteConfirmModal';
+import { Edit, Trash2, AlertCircle } from 'lucide-react';
 
 interface EditListingPageProps {
     params: Promise<{ id: string }>;
@@ -160,8 +162,9 @@ export default function EditListingPage({ params }: EditListingPageProps) {
 
             {/* Header */}
             <div className="mb-8">
-                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2">
-                    ✏️ تعديل الإعلان
+                <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2 flex items-center gap-2">
+                    <Edit className="w-8 h-8 text-cyan-400" />
+                    تعديل الإعلان
                 </h1>
                 <p className="text-[var(--text-secondary)]">
                     قم بتعديل تفاصيل إعلانك
@@ -170,8 +173,9 @@ export default function EditListingPage({ params }: EditListingPageProps) {
 
             {/* Error Message */}
             {error && (
-                <div className="card p-4 mb-6 border border-[var(--aurora-danger)]/30 bg-[var(--aurora-danger-muted)] rounded-xl">
-                    <p className="text-[var(--aurora-danger)]">{error}</p>
+                <div className="card p-4 mb-6 border border-red-500/30 bg-red-500/10 rounded-xl flex items-center gap-3">
+                    <AlertCircle className="w-5 h-5 text-red-400" />
+                    <p className="text-red-400">{error}</p>
                 </div>
             )}
 
@@ -195,9 +199,9 @@ export default function EditListingPage({ params }: EditListingPageProps) {
 
             {/* Delete Section */}
             {!listing.isDeleted && (
-                <div className="card p-6 rounded-xl border border-[var(--aurora-danger)]/20">
-                    <h3 className="font-bold text-[var(--aurora-danger)] mb-2 flex items-center gap-2">
-                        <span>🗑️</span>
+                <div className="card p-6 rounded-xl border border-red-500/20 bg-red-500/5">
+                    <h3 className="font-bold text-red-400 mb-2 flex items-center gap-2">
+                        <Trash2 className="w-5 h-5" />
                         حذف الإعلان
                     </h3>
                     <p className="text-[var(--text-secondary)] text-sm mb-4">
@@ -213,39 +217,15 @@ export default function EditListingPage({ params }: EditListingPageProps) {
             )}
 
             {/* Delete Confirmation Modal */}
-            {showDeleteModal && (
-                <div className="modal-backdrop">
-                    <div className="card-elevated p-6 rounded-2xl max-w-md w-full animate-fade-slide-up">
-                        <div className="text-center mb-6">
-                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-[var(--aurora-danger-muted)] mb-4">
-                                <span className="text-2xl">🗑️</span>
-                            </div>
-                            <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2">
-                                تأكيد الحذف
-                            </h3>
-                            <p className="text-[var(--text-secondary)]">
-                                هل أنت متأكد من حذف هذا الإعلان؟ لن يظهر للآخرين بعد الحذف.
-                            </p>
-                        </div>
-                        <div className="flex gap-3">
-                            <button
-                                onClick={() => setShowDeleteModal(false)}
-                                className="flex-1 btn btn-secondary py-2.5"
-                                disabled={isDeleting}
-                            >
-                                إلغاء
-                            </button>
-                            <button
-                                onClick={handleDelete}
-                                className="flex-1 btn btn-danger py-2.5"
-                                disabled={isDeleting}
-                            >
-                                {isDeleting ? 'جاري الحذف...' : 'نعم، احذف'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <DeleteConfirmModal
+                isOpen={showDeleteModal}
+                onClose={() => setShowDeleteModal(false)}
+                onConfirm={handleDelete}
+                title="تأكيد الحذف"
+                message="هل أنت متأكد من حذف هذا الإعلان؟ لن يظهر للآخرين بعد الحذف."
+                confirmText="نعم، احذف"
+                cancelText="إلغاء"
+            />
         </div>
     );
 }

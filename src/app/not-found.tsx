@@ -1,6 +1,7 @@
 // 404 Page - Not found handler
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Telescope, Home, Plus } from 'lucide-react';
 
 export const metadata: Metadata = {
     title: 'الصفحة غير موجودة | UniVerse',
@@ -14,8 +15,8 @@ export default function NotFoundPage() {
                 {/* Illustration */}
                 <div className="relative mb-8">
                     {/* Floating icon */}
-                    <div className="inline-flex items-center justify-center w-28 h-28 rounded-3xl glass-elevated animate-gentle-float">
-                        <span className="text-6xl">🔭</span>
+                    <div className="inline-flex items-center justify-center w-28 h-28 rounded-3xl glass-elevated animate-gentle-float text-slate-400">
+                        <Telescope className="w-14 h-14" />
                     </div>
 
                     {/* Decorative orbs */}
@@ -42,15 +43,17 @@ export default function NotFoundPage() {
                 <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
                     <Link
                         href="/"
-                        className="btn btn-primary px-6 py-3"
+                        className="btn btn-primary px-6 py-3 flex items-center justify-center gap-2"
                     >
-                        🏠 العودة للرئيسية
+                        <Home className="w-5 h-5" />
+                        العودة للرئيسية
                     </Link>
                     <Link
                         href="/listing/new"
-                        className="btn btn-secondary px-6 py-3"
+                        className="btn btn-secondary px-6 py-3 flex items-center justify-center gap-2"
                     >
-                        ➕ إنشاء إعلان
+                        <Plus className="w-5 h-5" />
+                        إنشاء إعلان
                     </Link>
                 </div>
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { GraduationCap, ClipboardCheck, AlertCircle, Lock } from 'lucide-react';
 import { auth } from '@/lib/firebase/client';
 import { createSession, verifyAndRegisterStudent, checkRegistrationStatus } from '@/actions/auth';
 
@@ -107,7 +108,7 @@ export default function RegisterPage() {
                             {/* Header */}
                             <div className="text-center mb-8">
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl glass mb-6">
-                                    <span className="text-3xl">🎓</span>
+                                    <GraduationCap className="w-8 h-8 text-cyan-400" />
                                 </div>
                                 <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
                                     إنشاء حساب
@@ -119,8 +120,9 @@ export default function RegisterPage() {
 
                             {/* Error */}
                             {error && (
-                                <div className="card p-4 mb-6 border border-[var(--aurora-danger)]/30 bg-[var(--aurora-danger-muted)] rounded-xl">
-                                    <p className="text-[var(--aurora-danger)] text-sm text-center">
+                                <div className="card p-4 mb-6 border border-red-500/30 bg-red-500/10 rounded-xl flex items-center justify-center gap-2">
+                                    <AlertCircle className="w-5 h-5 text-red-400" />
+                                    <p className="text-red-400 text-sm text-center">
                                         {error}
                                     </p>
                                 </div>
@@ -173,7 +175,7 @@ export default function RegisterPage() {
                             {/* Header - Step 2 */}
                             <div className="text-center mb-8">
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl glass mb-6">
-                                    <span className="text-3xl">📋</span>
+                                    <ClipboardCheck className="w-8 h-8 text-cyan-400" />
                                 </div>
                                 <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
                                     التحقق من الهوية
@@ -185,8 +187,9 @@ export default function RegisterPage() {
 
                             {/* Error */}
                             {error && (
-                                <div className="card p-4 mb-6 border border-[var(--aurora-danger)]/30 bg-[var(--aurora-danger-muted)] rounded-xl">
-                                    <p className="text-[var(--aurora-danger)] text-sm text-center">
+                                <div className="card p-4 mb-6 border border-red-500/30 bg-red-500/10 rounded-xl flex items-center justify-center gap-2">
+                                    <AlertCircle className="w-5 h-5 text-red-400" />
+                                    <p className="text-red-400 text-sm text-center">
                                         {error}
                                     </p>
                                 </div>
@@ -256,8 +259,9 @@ export default function RegisterPage() {
                 </div>
 
                 {/* Security Note */}
-                <p className="text-center text-[var(--text-muted)] text-xs mt-6">
-                    🔒 بياناتك محمية ولن يتم مشاركتها
+                <p className="text-center text-[var(--text-muted)] text-xs mt-6 flex items-center justify-center gap-1.5">
+                    <Lock className="w-3 h-3" />
+                    بياناتك محمية ولن يتم مشاركتها
                 </p>
             </div>
         </div>
